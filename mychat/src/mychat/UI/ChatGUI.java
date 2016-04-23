@@ -45,6 +45,7 @@ public class ChatGUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().setBackground(new Color(77,189,144));
+		frame.setVisible(true);
 		
 		dialog_panel = new JPanel();
 		dialog_panel.setBounds(117, 33, 635, 365);
