@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 import javax.swing.JLabel;
 
-public class GUIController {
+public class ChatGUIController {
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUI window = new GUI();
+					ChatGUI window = new ChatGUI();
 					window.frame.setVisible(true);
 					window.updateDialog(generateJLabels());
 				} catch (Exception e) {

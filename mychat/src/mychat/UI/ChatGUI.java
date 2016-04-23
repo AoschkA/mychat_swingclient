@@ -15,7 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 
-public class GUI {
+public class ChatGUI {
 	
 	public static int dialogsize = 20;
 	public JFrame frame;
@@ -32,7 +32,7 @@ public class GUI {
 	/**
 	 * Create the application.
 	 */
-	public GUI() {
+	public ChatGUI() {
 		initialize();
 	}
 
