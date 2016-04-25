@@ -11,14 +11,15 @@ import java.net.URLConnection;
 
 import javax.swing.JOptionPane;
 
+import com.firebase.client.AuthData;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+
+import entity.User;
 import mychat.UI.LoginGUI;
 
 public class LoginController {
-	private static String AUTH_TOKEN = "-1";
-	private static String username = "-1";
-	private static String password = "-1"; 
 	private static String relayserverURL = "http://85.11.31.36:8080/RelayServer/";
-	private static ChatController chatController = new ChatController();
 	
 	public static void main(String[] args) {
 		initiateLoginGUI();
@@ -40,11 +41,11 @@ public class LoginController {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String[] userinfo = loginGUI.getUserInfo();
-				username=userinfo[0];
-				password=userinfo[1];
+				User.username=userinfo[0];
+				User.password=userinfo[1];
 				boolean validated = validateUser();
 				if (validated) {
-					chatController.initiateChatGUI();
+					ChatController.initiateChatGUI();
 					loginGUI.setVisible(false);
 				} else {
 					JOptionPane.showMessageDialog(loginGUI, "Username and password does not match");
@@ -55,7 +56,7 @@ public class LoginController {
 	}
 	
 	private static boolean validateUser() {
-		String url = relayserverURL + "auth?user=" + username + "&psw=" + password;
+		String url = relayserverURL + "auth?user=" + User.username + "&psw=" + User.password;
 		URL oracle;
 		try {
 			oracle = new URL(url);
@@ -65,7 +66,7 @@ public class LoginController {
 			String inputLine;
 			while ((inputLine = in.readLine()) != null) {
 				System.out.println("token = "+inputLine);
-				AUTH_TOKEN=inputLine;
+				User.AUTH_TOKEN=inputLine;
 				}
 			in.close();
 		} catch (MalformedURLException e) {
@@ -76,26 +77,10 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		
-		if (AUTH_TOKEN.equals("-1"))
+		if (User.AUTH_TOKEN.equals("-1"))
 			return false;
 		else
 			return true;
-	}
-	
-	private void connectToFirebase() {
-		
-		
-		
-//		Firebase ref = new Firebase("https://micro-chat.firebaseio.com/");
-//		ref.authWithCustomToken(AUTH_TOKEN, new Firebase.AuthResultHandler() {
-//		@Override
-//		public void onAuthenticationError(FirebaseError error) {
-//		System.err.println("Login Failed! " + error.getMessage());
-//		}
-//		@Override
-//		public void onAuthenticated(AuthData authData) {
-//		System.out.println("Login Succeeded!");
-//		}
 	}
 
 }
