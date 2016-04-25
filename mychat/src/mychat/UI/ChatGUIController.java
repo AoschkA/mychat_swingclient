@@ -22,6 +22,16 @@ public class ChatGUIController {
 		});
 	}
 	
+	public static void initializeChatGUI() {
+		try {
+			ChatGUI window = new ChatGUI();
+			window.frame.setVisible(true);
+			window.updateDialog(generateJLabels());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	private static ArrayList<ArrayList<JLabel>> generateJLabels() {
 		ArrayList<ArrayList<JLabel>> labels = new ArrayList<ArrayList<JLabel>>();
 		for (int i=0; i<20; i++) {

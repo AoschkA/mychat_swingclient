@@ -41,8 +41,8 @@ public class LoginController {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String[] userinfo = loginGUI.getUserInfo();
-				User.username=userinfo[0];
-				User.password=userinfo[1];
+				User.USERNAME=userinfo[0];
+				User.PASSWORD=userinfo[1];
 				boolean validated = validateUser();
 				if (validated) {
 					ChatController.initiateChatGUI();
@@ -56,7 +56,7 @@ public class LoginController {
 	}
 	
 	private static boolean validateUser() {
-		String url = relayserverURL + "auth?user=" + User.username + "&psw=" + User.password;
+		String url = relayserverURL + "auth?user=" + User.USERNAME + "&psw=" + User.PASSWORD;
 		URL oracle;
 		try {
 			oracle = new URL(url);

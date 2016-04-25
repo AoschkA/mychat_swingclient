@@ -13,13 +13,12 @@ import com.firebase.client.FirebaseError;
 
 import entity.User;
 import mychat.UI.ChatGUI;
+import mychat.UI.ChatGUIController;
 
 public class ChatController {
-	private static ChatGUI chatGUI;
-	
 	
 	public static void initiateChatGUI(){
-		chatGUI = new ChatGUI();
+		ChatGUIController.initializeChatGUI();
 		authenticateToFirebase();
 	}
 	private static void authenticateToFirebase() {
@@ -39,7 +38,7 @@ public class ChatController {
 	}
 	
 	private static void printChat() {
-		String url = "'https://micro-chat.firebaseio.com/chat-rooms/testroom.json?print=pretty&auth="
+		String url = "https://micro-chat.firebaseio.com/users/"+User.USERNAME+".json?print=pretty&auth="
 				+ User.AUTH_TOKEN;
 		URL oracle;
 		try {
