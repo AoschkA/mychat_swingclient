@@ -7,7 +7,7 @@ import microchat.handlers.RelayserverHandler;
 public class DistributedConnectionTest {
 	
 	public static void main(String[] args) {
-		FirebaseHandler firebaseHandler = new FirebaseHandler();
+		FirebaseHandler firebaseHandler = new FirebaseHandler(null);
 		RelayserverHandler relayHandler = new RelayserverHandler();
 		UserPreferences.USERNAME = "s144883";
 		UserPreferences.PASSWORD = "33rd";

@@ -8,10 +8,17 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
 
+import microchat.control.GUIController;
 import microchat.entity.UserPreferences;
 
 public class FirebaseHandler implements ChildEventListener{
+	private GUIController guiController;
+
+	public FirebaseHandler(GUIController guiController){
+		this.guiController=guiController;
+	}
 	
 public void authenticateToFirebase() {
 		
@@ -50,10 +57,12 @@ public void onCancelled(FirebaseError arg0) {
 }
 
 @Override
-public void onChildAdded(DataSnapshot arg0, String arg1) {
-	System.out.println("MADE IT HERE");
-	System.out.println(arg0.getValue().toString());
-	System.out.println(arg1);
+public void onChildAdded(DataSnapshot dataSnapshot, String arg1) {
+	if (!UserPreferences.CHATROOMS.contains(dataSnapshot.getKey()))
+		UserPreferences.CHATROOMS.add(dataSnapshot.getKey());
+	guiController.eventListChatrooms(UserPreferences.CHATROOMS);
+	System.out.println("key- "+dataSnapshot.getKey());
+	System.out.println(UserPreferences.CHATROOMS);
 }
 
 @Override

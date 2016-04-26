@@ -1,0 +1,83 @@
+package microchat.control;
+
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import microchat.GUI.MicrochatGUI;
+import microchat.entity.UserPreferences;
+
+public class InputController {
+	private MicrochatGUI gui;
+	private EventController eventManager;
+	
+	public InputController() {
+		gui = new MicrochatGUI();
+		eventManager = new EventController(gui);
+		addListeners();
+	}
+	
+	public void initializeMicrochat() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					gui.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
+	
+	private void addListeners() {
+		// Login button
+		gui.btnLogin.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				eventManager.validateUser();
+			}
+			
+		});
+		
+		// Send button
+		gui.btnSend.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				eventManager.writeMessage();
+				
+			}
+	
+		});
+		
+		gui.btnCreateChatroom.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				eventManager.addChatroom();
+			}
+			
+		});
+		
+		// For pressing enter to send text in writing block
+		gui.textField_writingblock.addKeyListener(new KeyListener(){
+
+			@Override
+			public void keyPressed(KeyEvent arg0) {
+				if (arg0.getID()==KeyEvent.VK_ENTER) eventManager.writeMessage(); 
+			}
+
+			@Override
+			public void keyReleased(KeyEvent arg0) {}
+
+			@Override
+			public void keyTyped(KeyEvent arg0) {}
+			
+		});
+	}
+
+}
