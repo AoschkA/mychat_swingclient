@@ -11,7 +11,7 @@ import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
-import entity.User;
+import microchat.entity.UserPreferences;
 import mychat.UI.ChatGUI;
 import mychat.UI.ChatGUIController;
 
@@ -24,7 +24,7 @@ public class ChatController {
 	private static void authenticateToFirebase() {
 		
 		Firebase ref = new Firebase("https://micro-chat.firebaseio.com/");
-		ref.authWithCustomToken(User.AUTH_TOKEN, new Firebase.AuthResultHandler() {
+		ref.authWithCustomToken(UserPreferences.AUTH_TOKEN, new Firebase.AuthResultHandler() {
 			@Override
 			public void onAuthenticationError(FirebaseError error) {
 			System.err.println("Login Failed! " + error.getMessage());
@@ -38,8 +38,8 @@ public class ChatController {
 	}
 	
 	private static void printChat() {
-		String url = "https://micro-chat.firebaseio.com/users/"+User.USERNAME+".json?print=pretty&auth="
-				+ User.AUTH_TOKEN;
+		String url = "https://micro-chat.firebaseio.com/users/"+UserPreferences.USERNAME+".json?print=pretty&auth="
+				+ UserPreferences.AUTH_TOKEN;
 		URL oracle;
 		try {
 			oracle = new URL(url);

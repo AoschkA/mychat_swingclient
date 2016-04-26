@@ -15,7 +15,7 @@ import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
-import entity.User;
+import microchat.entity.UserPreferences;
 import mychat.UI.LoginGUI;
 
 public class LoginController {
@@ -41,8 +41,8 @@ public class LoginController {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				String[] userinfo = loginGUI.getUserInfo();
-				User.USERNAME=userinfo[0];
-				User.PASSWORD=userinfo[1];
+				UserPreferences.USERNAME=userinfo[0];
+				UserPreferences.PASSWORD=userinfo[1];
 				boolean validated = validateUser();
 				if (validated) {
 					ChatController.initiateChatGUI();
@@ -56,7 +56,7 @@ public class LoginController {
 	}
 	
 	private static boolean validateUser() {
-		String url = relayserverURL + "auth?user=" + User.USERNAME + "&psw=" + User.PASSWORD;
+		String url = relayserverURL + "auth?user=" + UserPreferences.USERNAME + "&psw=" + UserPreferences.PASSWORD;
 		URL oracle;
 		try {
 			oracle = new URL(url);
@@ -66,7 +66,7 @@ public class LoginController {
 			String inputLine;
 			while ((inputLine = in.readLine()) != null) {
 				System.out.println("token = "+inputLine);
-				User.AUTH_TOKEN=inputLine;
+				UserPreferences.AUTH_TOKEN=inputLine;
 				}
 			in.close();
 		} catch (MalformedURLException e) {
@@ -77,7 +77,7 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		
-		if (User.AUTH_TOKEN.equals("-1"))
+		if (UserPreferences.AUTH_TOKEN.equals("-1"))
 			return false;
 		else
 			return true;
