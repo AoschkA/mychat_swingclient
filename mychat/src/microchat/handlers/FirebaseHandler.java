@@ -13,7 +13,7 @@ import com.firebase.client.ValueEventListener;
 import microchat.control.GUIController;
 import microchat.entity.UserPreferences;
 
-public class FirebaseHandler implements ChildEventListener{
+public class FirebaseHandler {
 	private GUIController guiController;
 
 	public FirebaseHandler(GUIController guiController){
@@ -31,7 +31,7 @@ public void authenticateToFirebase() {
 			@Override
 			public void onAuthenticated(AuthData authData) {
 			System.out.println("Login Succeeded!");
-			getListedChatrooms();
+			initiateChatrooms();
 			}
 		});
 	}
@@ -44,44 +44,86 @@ public void createChatroom(String chatroomName) {
 	firebaseReference.updateChildren(firebaseMap);
 }
 
-public void getListedChatrooms() {
+public void initiateChatrooms() {
 	Firebase firebaseReference = new Firebase("https://micro-chat.firebaseio.com/users/"+
 			UserPreferences.USERNAME+"/chatrooms/");
-	firebaseReference.addChildEventListener(this);
+	firebaseReference.addChildEventListener(new ChildEventListener(){
+
+		@Override
+		public void onCancelled(FirebaseError arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onChildAdded(DataSnapshot dataSnapshot, String arg1) {
+			if (!UserPreferences.CHATROOMS.contains(dataSnapshot.getKey()))
+				UserPreferences.CHATROOMS.add(dataSnapshot.getKey());
+			guiController.eventListChatrooms(UserPreferences.CHATROOMS);
+			System.out.println("key- "+dataSnapshot.getKey());
+			System.out.println(UserPreferences.CHATROOMS);
+			
+		}
+
+		@Override
+		public void onChildChanged(DataSnapshot arg0, String arg1) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onChildMoved(DataSnapshot arg0, String arg1) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onChildRemoved(DataSnapshot arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	});
 }
 
-@Override
-public void onCancelled(FirebaseError arg0) {
-	// TODO Auto-generated method stub
-	
+public void initiateChat() {
+	Firebase firebaseReference = new Firebase("https://micro-chat.firebaseio.com/chat-rooms/"
+			+UserPreferences.JOINED_CHATROOM+"/");
+	firebaseReference.addChildEventListener(new ChildEventListener(){
+
+		@Override
+		public void onCancelled(FirebaseError arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onChildAdded(DataSnapshot dataSnapshot, String arg1) {
+			System.out.println(dataSnapshot);
+		}
+
+		@Override
+		public void onChildChanged(DataSnapshot arg0, String arg1) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onChildMoved(DataSnapshot arg0, String arg1) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onChildRemoved(DataSnapshot arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	});
 }
 
-@Override
-public void onChildAdded(DataSnapshot dataSnapshot, String arg1) {
-	if (!UserPreferences.CHATROOMS.contains(dataSnapshot.getKey()))
-		UserPreferences.CHATROOMS.add(dataSnapshot.getKey());
-	guiController.eventListChatrooms(UserPreferences.CHATROOMS);
-	System.out.println("key- "+dataSnapshot.getKey());
-	System.out.println(UserPreferences.CHATROOMS);
-}
 
-@Override
-public void onChildChanged(DataSnapshot arg0, String arg1) {
-	// TODO Auto-generated method stub
-	
-}
-
-@Override
-public void onChildMoved(DataSnapshot arg0, String arg1) {
-	// TODO Auto-generated method stub
-	
-}
-
-@Override
-public void onChildRemoved(DataSnapshot arg0) {
-	// TODO Auto-generated method stub
-	
-}
 
 	
 

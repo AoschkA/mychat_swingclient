@@ -26,7 +26,7 @@ public class EventController {
 		guiController.eventLogin(validated);
 		if (validated) {
 			firebaseHandler.authenticateToFirebase();
-			firebaseHandler.getListedChatrooms();
+			firebaseHandler.initiateChatrooms();
 			System.out.println(UserPreferences.CHATROOMS);
 			guiController.eventListChatrooms(UserPreferences.CHATROOMS);
 		}
@@ -36,7 +36,11 @@ public class EventController {
 	public void addChatroom() {
 		String chatroomName = guiController.getChatroomDetails();
 		firebaseHandler.createChatroom(chatroomName);
-		
+	}
+	
+	public void joinChatroom() {
+		UserPreferences.JOINED_CHATROOM = guiController.getChosenChatroom();
+		firebaseHandler.initiateChat();
 	}
 
 }

@@ -35,6 +35,7 @@ public class MicrochatGUI extends JFrame {
 	public JButton btnCreateChatroom;
 	public JList<String> listChatrooms;
 	public JTextPane txtpnYourChatrooms;
+	public JButton btnJoinchatroom;
 
 	/**
 	 * Launch the application.
@@ -128,8 +129,8 @@ public class MicrochatGUI extends JFrame {
 		listChatrooms.setBounds(30, 49, 143, 231);
 		panel_chatrooms.add(listChatrooms);
 		
-		btnCreateChatroom = new JButton("CREATE");
-		btnCreateChatroom.setBounds(192, 292, 81, 23);
+		btnCreateChatroom = new JButton("JOIN");
+		btnCreateChatroom.setBounds(183, 293, 90, 22);
 		panel_chatrooms.add(btnCreateChatroom);
 		
 		textField_chatroomwriter = new JTextField();
@@ -142,5 +143,9 @@ public class MicrochatGUI extends JFrame {
 		txtpnYourChatrooms.setText("Your Chatrooms");
 		txtpnYourChatrooms.setBounds(30, 18, 143, 20);
 		panel_chatrooms.add(txtpnYourChatrooms);
+		
+		btnJoinchatroom = new JButton("OPEN");
+		btnJoinchatroom.setBounds(184, 46, 89, 23);
+		panel_chatrooms.add(btnJoinchatroom);
 	}
 }

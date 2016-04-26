@@ -23,6 +23,10 @@ public class GUIController {
 		return gui.textField_chatroomwriter.getText();
 	}
 	
+	public String getChosenChatroom() {
+		return gui.listChatrooms.getSelectedValue();
+	}
+	
 	public void eventLogin(boolean succeded){
 		System.out.println(UserPreferences.USERNAME);
 		System.out.println(UserPreferences.PASSWORD);

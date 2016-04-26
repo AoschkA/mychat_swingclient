@@ -12,13 +12,14 @@ import microchat.entity.UserPreferences;
 public class InputController {
 	private MicrochatGUI gui;
 	private EventController eventManager;
-	
+
 	public InputController() {
 		gui = new MicrochatGUI();
 		eventManager = new EventController(gui);
 		addListeners();
+		addKeyListeners();
 	}
-	
+
 	public void initializeMicrochat() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -30,8 +31,8 @@ public class InputController {
 			}
 		});
 	}
-	
-	
+
+
 	private void addListeners() {
 		// Login button
 		gui.btnLogin.addActionListener(new ActionListener(){
@@ -40,29 +41,42 @@ public class InputController {
 			public void actionPerformed(ActionEvent e) {
 				eventManager.validateUser();
 			}
-			
+
 		});
-		
+
 		// Send button
 		gui.btnSend.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				eventManager.writeMessage();
-				
+
 			}
-	
+
 		});
-		
+
 		gui.btnCreateChatroom.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				eventManager.addChatroom();
 			}
-			
+
 		});
 		
+		gui.btnJoinchatroom.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				eventManager.joinChatroom();
+				
+			}
+			
+		});
+
+	}
+
+	private void addKeyListeners() {
 		// For pressing enter to send text in writing block
 		gui.textField_writingblock.addKeyListener(new KeyListener(){
 
@@ -76,7 +90,7 @@ public class InputController {
 
 			@Override
 			public void keyTyped(KeyEvent arg0) {}
-			
+
 		});
 	}
 
