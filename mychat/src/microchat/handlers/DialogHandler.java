@@ -22,7 +22,7 @@ public class DialogHandler {
 			String[] nameValue = valueSplit[0].split("=");
 			String[] messageValue = valueSplit[1].split("=");
 			String name = nameValue[1];
-			String chatMessage = messageValue[1].substring(0, messageValue[1].length()-2);
+			String chatMessage = messageValue[1].substring(0, messageValue[1].length()-1);
 			if (!CHAT_USERS.contains(name)) CHAT_USERS.add(name);
 			MESSAGES.add(new String[] {name, chatMessage});
 		}
