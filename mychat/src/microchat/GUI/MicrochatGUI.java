@@ -13,6 +13,7 @@ import javax.swing.JTextPane;
 import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import java.awt.Color;
+import javax.swing.JScrollPane;
 
 public class MicrochatGUI extends JFrame {
 
@@ -43,7 +44,8 @@ public class MicrochatGUI extends JFrame {
 	public JButton btnAddFriend;
 	public JTextPane textPane_chat;
 	public JButton btnRemoveSelected;
-	private JTextPane txtpnYourFriends;
+	public JTextPane txtpnYourFriends;
+	public JScrollPane scrollPane_chat;
 
 	/**
 	 * Launch the application.
@@ -106,10 +108,13 @@ public class MicrochatGUI extends JFrame {
 		txtpnInThisChat.setBounds(368, 27, 120, 20);
 		panel_chat.add(txtpnInThisChat);
 		
+		scrollPane_chat = new JScrollPane();
+		scrollPane_chat.setBounds(37, 58, 308, 588);
+		panel_chat.add(scrollPane_chat);
+		
 		textPane_chat = new JTextPane();
+		scrollPane_chat.setViewportView(textPane_chat);
 		textPane_chat.setEditable(false);
-		textPane_chat.setBounds(37, 27, 320, 606);
-		panel_chat.add(textPane_chat);
 		
 		panel_login = new JPanel();
 		panel_login.setBackground(new Color(255, 102, 51));
