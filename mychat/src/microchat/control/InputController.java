@@ -81,16 +81,36 @@ public class InputController {
 		gui.textField_writingblock.addKeyListener(new KeyListener(){
 
 			@Override
-			public void keyPressed(KeyEvent arg0) {
-				if (arg0.getID()==KeyEvent.VK_ENTER) eventManager.writeMessage(); 
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode()==KeyEvent.VK_ENTER) eventManager.writeMessage();
 			}
 
 			@Override
-			public void keyReleased(KeyEvent arg0) {}
+			public void keyReleased(KeyEvent e) {}
 
 			@Override
-			public void keyTyped(KeyEvent arg0) {}
+			public void keyTyped(KeyEvent e) {}
 
+		});
+		
+		gui.textField_password.addKeyListener(new KeyListener(){
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode()==KeyEvent.VK_ENTER) eventManager.validateUser();
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+			
 		});
 	}
 

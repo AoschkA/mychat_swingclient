@@ -44,6 +44,15 @@ public void createChatroom(String chatroomName) {
 	firebaseReference.updateChildren(firebaseMap);
 }
 
+public void createMessage(String message) {
+	Firebase firebaseReference = new Firebase("https://micro-chat.firebaseio.com/chat-rooms/"
+			+ UserPreferences.JOINED_CHATROOM + "/");
+	Map<String, Object> firebaseMap = new HashMap<String, Object>();
+	firebaseMap.put(UserPreferences.USERNAME, 0);
+	firebaseMap.put(message, 0);
+	firebaseReference.updateChildren(firebaseMap);
+}
+
 public void initiateChatrooms() {
 	Firebase firebaseReference = new Firebase("https://micro-chat.firebaseio.com/users/"+
 			UserPreferences.USERNAME+"/chatrooms/");
@@ -60,9 +69,6 @@ public void initiateChatrooms() {
 			if (!UserPreferences.CHATROOMS.contains(dataSnapshot.getKey()))
 				UserPreferences.CHATROOMS.add(dataSnapshot.getKey());
 			guiController.eventListChatrooms(UserPreferences.CHATROOMS);
-			System.out.println("key- "+dataSnapshot.getKey());
-			System.out.println(UserPreferences.CHATROOMS);
-			
 		}
 
 		@Override
@@ -99,7 +105,8 @@ public void initiateChat() {
 
 		@Override
 		public void onChildAdded(DataSnapshot dataSnapshot, String arg1) {
-			System.out.println(dataSnapshot);
+			DialogHandler.createMessage(dataSnapshot.getValue().toString());
+			guiController.eventUpdateChat();
 		}
 
 		@Override

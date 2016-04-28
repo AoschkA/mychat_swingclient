@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import microchat.GUI.MicrochatGUI;
 import microchat.entity.UserPreferences;
+import microchat.handlers.DialogHandler;
 
 public class GUIController {
 	private MicrochatGUI gui;
@@ -27,6 +28,10 @@ public class GUIController {
 		return gui.listChatrooms.getSelectedValue();
 	}
 	
+	public String getWrittenMessage() {
+		return gui.textField_writingblock.getText();
+	}
+	
 	public void eventLogin(boolean succeded){
 		System.out.println(UserPreferences.USERNAME);
 		System.out.println(UserPreferences.PASSWORD);
@@ -43,5 +48,16 @@ public class GUIController {
 		for (int i=0; i<listData.size(); i++) arrayData[i]=listData.get(i); 
 		gui.listChatrooms.setListData(arrayData);
 	}
+	
+	public void eventUpdateChat() {
+		// Updates 'users in this chat'
+		String[] arrayData = new String[DialogHandler.CHAT_USERS.size()];
+		for (int i=0; i<DialogHandler.CHAT_USERS.size(); i++) arrayData[i]=DialogHandler.CHAT_USERS.get(i); 
+		gui.list_chatuserlist.setListData(arrayData);
+		
+		// Updates chat
+		DialogHandler.generateChat(gui.textPane_chat);
+	}
+	
 
 }

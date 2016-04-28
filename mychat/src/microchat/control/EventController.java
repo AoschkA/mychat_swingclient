@@ -2,6 +2,7 @@ package microchat.control;
 
 import microchat.GUI.MicrochatGUI;
 import microchat.entity.UserPreferences;
+import microchat.handlers.DialogHandler;
 import microchat.handlers.FirebaseHandler;
 import microchat.handlers.RelayserverHandler;
 
@@ -15,7 +16,7 @@ public class EventController {
 	}
 	
 	public void writeMessage() {
-		
+		firebaseHandler.createMessage(guiController.getWrittenMessage());
 	}
 	
 	public boolean validateUser() {
@@ -40,7 +41,11 @@ public class EventController {
 	
 	public void joinChatroom() {
 		UserPreferences.JOINED_CHATROOM = guiController.getChosenChatroom();
+		System.out.println(UserPreferences.JOINED_CHATROOM);
+		DialogHandler.clearChat();
 		firebaseHandler.initiateChat();
+		guiController.eventUpdateChat();
 	}
+	
 
 }
