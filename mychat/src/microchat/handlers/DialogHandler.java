@@ -7,7 +7,6 @@ import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
-import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
 import microchat.entity.UserPreferences;
@@ -17,7 +16,7 @@ public class DialogHandler {
 	public static ArrayList<String[]> MESSAGES = new ArrayList<String[]>();
 
 	public static void createMessage(String message) {
-		if (!message.equals("0")){
+		if (message.startsWith("{name=") && message.endsWith("}")){
 			System.out.println(message);
 			String[] valueSplit = message.split(", ");
 			String[] nameValue = valueSplit[0].split("=");
@@ -30,6 +29,9 @@ public class DialogHandler {
 	}
 
 	public static void generateChat(JTextPane textPane){
+		// Clears textPane
+		textPane.setText("");
+		
 		StyledDocument doc = textPane.getStyledDocument();
 		Style style = textPane.addStyle("Style1", null);
 		for (String[] message : MESSAGES) {

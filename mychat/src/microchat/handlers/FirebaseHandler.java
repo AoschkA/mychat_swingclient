@@ -8,7 +8,6 @@ import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 
 import microchat.control.GUIController;
 import microchat.entity.UserPreferences;
@@ -48,9 +47,10 @@ public void createMessage(String message) {
 	Firebase firebaseReference = new Firebase("https://micro-chat.firebaseio.com/chat-rooms/"
 			+ UserPreferences.JOINED_CHATROOM + "/");
 	Map<String, Object> firebaseMap = new HashMap<String, Object>();
-	firebaseMap.put(UserPreferences.USERNAME, 0);
-	firebaseMap.put(message, 0);
-	firebaseReference.updateChildren(firebaseMap);
+	firebaseMap.put("name", UserPreferences.USERNAME);
+	firebaseMap.put("message", message);
+	Firebase postref = firebaseReference.push();
+	postref.setValue(firebaseMap);
 }
 
 public void initiateChatrooms() {
