@@ -17,6 +17,7 @@ public class EventController {
 	
 	public void writeMessage() {
 		firebaseHandler.createMessage(guiController.getWrittenMessage());
+		guiController.writeMessage();
 	}
 	
 	public boolean validateUser() {

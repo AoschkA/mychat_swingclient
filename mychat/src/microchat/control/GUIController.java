@@ -59,5 +59,9 @@ public class GUIController {
 		DialogHandler.generateChat(gui.textPane_chat);
 	}
 	
+	
+	public void writeMessage() {
+		gui.textField_writingblock.setText("");
+	}
 
 }

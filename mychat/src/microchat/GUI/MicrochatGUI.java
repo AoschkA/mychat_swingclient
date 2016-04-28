@@ -66,15 +66,15 @@ public class MicrochatGUI extends JFrame {
 	 */
 	public MicrochatGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1082, 775);
+		setBounds(100, 100, 826, 775);
 		contentPane = new JPanel();
-		contentPane.setBackground(UIManager.getColor("CheckBox.background"));
+		contentPane.setBackground(new Color(255, 255, 102));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		panel_chat = new JPanel();
-		panel_chat.setBackground(new Color(0, 255, 153));
+		panel_chat.setBackground(new Color(204, 0, 0));
 		panel_chat.setBounds(0, 0, 524, 725);
 		contentPane.add(panel_chat);
 		panel_chat.setLayout(null);
@@ -99,7 +99,8 @@ public class MicrochatGUI extends JFrame {
 		panel_chat.add(btnAddSelected);
 		
 		txtpnInThisChat = new JTextPane();
-		txtpnInThisChat.setBackground(new Color(0, 255, 153));
+		txtpnInThisChat.setForeground(new Color(255, 255, 255));
+		txtpnInThisChat.setBackground(new Color(204, 0, 0));
 		txtpnInThisChat.setEditable(false);
 		txtpnInThisChat.setText("In this chat:");
 		txtpnInThisChat.setBounds(368, 27, 120, 20);
@@ -111,8 +112,8 @@ public class MicrochatGUI extends JFrame {
 		panel_chat.add(textPane_chat);
 		
 		panel_login = new JPanel();
-		panel_login.setBackground(UIManager.getColor("Button.shadow"));
-		panel_login.setBounds(701, 0, 355, 164);
+		panel_login.setBackground(new Color(255, 102, 51));
+		panel_login.setBounds(534, 0, 267, 164);
 		contentPane.add(panel_login);
 		panel_login.setLayout(null);
 		
@@ -121,7 +122,7 @@ public class MicrochatGUI extends JFrame {
 		panel_login.add(textField_password);
 		
 		btnLogin = new JButton("LOGIN");
-		btnLogin.setBounds(222, 22, 89, 23);
+		btnLogin.setBounds(168, 54, 89, 23);
 		panel_login.add(btnLogin);
 		
 		textField_username = new JTextField();
@@ -131,80 +132,82 @@ public class MicrochatGUI extends JFrame {
 		
 		txtpnLoggedInAs = new JTextPane();
 		txtpnLoggedInAs.setText("Logged in as: ");
-		txtpnLoggedInAs.setBackground(UIManager.getColor("Button.shadow"));
+		txtpnLoggedInAs.setBackground(new Color(255, 102, 51));
 		txtpnLoggedInAs.setEditable(false);
-		txtpnLoggedInAs.setBounds(10, 61, 165, 20);
+		txtpnLoggedInAs.setBounds(10, 61, 155, 20);
 		panel_login.add(txtpnLoggedInAs);
 		
 		txtpnCurrentToken = new JTextPane();
 		txtpnCurrentToken.setText("Current token:  ");
 		txtpnCurrentToken.setEditable(false);
-		txtpnCurrentToken.setBackground(UIManager.getColor("Button.shadow"));
-		txtpnCurrentToken.setBounds(10, 92, 335, 60);
+		txtpnCurrentToken.setBackground(new Color(255, 102, 51));
+		txtpnCurrentToken.setBounds(10, 92, 247, 60);
 		panel_login.add(txtpnCurrentToken);
 		
 		panel_chatrooms = new JPanel();
-		panel_chatrooms.setBackground(UIManager.getColor("Button.shadow"));
-		panel_chatrooms.setBounds(789, 175, 267, 332);
+		panel_chatrooms.setBackground(new Color(255, 102, 51));
+		panel_chatrooms.setBounds(534, 168, 267, 308);
 		contentPane.add(panel_chatrooms);
 		panel_chatrooms.setLayout(null);
 		
 		listChatrooms = new JList<String>();
 		listChatrooms.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listChatrooms.setBounds(10, 51, 143, 231);
+		listChatrooms.setBounds(10, 38, 143, 231);
 		panel_chatrooms.add(listChatrooms);
 		
 		btnCreateChatroom = new JButton("JOIN");
 		btnCreateChatroom.setToolTipText("join chatroom");
-		btnCreateChatroom.setBounds(163, 293, 90, 22);
+		btnCreateChatroom.setBounds(162, 279, 90, 22);
 		panel_chatrooms.add(btnCreateChatroom);
 		
 		textField_chatroomwriter = new JTextField();
-		textField_chatroomwriter.setBounds(10, 294, 143, 20);
+		textField_chatroomwriter.setBounds(10, 280, 143, 20);
 		panel_chatrooms.add(textField_chatroomwriter);
 		textField_chatroomwriter.setColumns(10);
 		
 		txtpnYourChatrooms = new JTextPane();
+		txtpnYourChatrooms.setBackground(new Color(255, 102, 51));
 		txtpnYourChatrooms.setEditable(false);
 		txtpnYourChatrooms.setText("Your Chatrooms");
-		txtpnYourChatrooms.setBounds(10, 20, 143, 20);
+		txtpnYourChatrooms.setBounds(10, 11, 143, 20);
 		panel_chatrooms.add(txtpnYourChatrooms);
 		
 		btnJoinchatroom = new JButton("OPEN");
 		btnJoinchatroom.setToolTipText("open selected chatroom");
-		btnJoinchatroom.setBounds(163, 48, 89, 23);
+		btnJoinchatroom.setBounds(163, 38, 89, 23);
 		panel_chatrooms.add(btnJoinchatroom);
 		
 		panel_Friends = new JPanel();
-		panel_Friends.setBackground(UIManager.getColor("Button.shadow"));
-		panel_Friends.setBounds(534, 175, 250, 332);
+		panel_Friends.setBackground(new Color(255, 102, 51));
+		panel_Friends.setBounds(534, 481, 267, 244);
 		contentPane.add(panel_Friends);
 		panel_Friends.setLayout(null);
 		
 		list_friends = new JList<String>();
 		list_friends.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list_friends.setBounds(10, 52, 132, 238);
+		list_friends.setBounds(10, 42, 132, 138);
 		panel_Friends.add(list_friends);
 		
 		textField_addFriend = new JTextField();
-		textField_addFriend.setBounds(10, 301, 132, 20);
+		textField_addFriend.setBounds(10, 191, 132, 20);
 		panel_Friends.add(textField_addFriend);
 		textField_addFriend.setColumns(10);
 		
 		btnAddFriend = new JButton("ADD");
 		btnAddFriend.setToolTipText("add new friend");
-		btnAddFriend.setBounds(152, 300, 89, 23);
+		btnAddFriend.setBounds(152, 190, 89, 23);
 		panel_Friends.add(btnAddFriend);
 		
 		btnRemoveSelected = new JButton("REMOVE");
 		btnRemoveSelected.setToolTipText("remove selected friend");
-		btnRemoveSelected.setBounds(152, 52, 89, 23);
+		btnRemoveSelected.setBounds(152, 39, 89, 23);
 		panel_Friends.add(btnRemoveSelected);
 		
 		txtpnYourFriends = new JTextPane();
+		txtpnYourFriends.setBackground(new Color(255, 102, 51));
 		txtpnYourFriends.setText("Your Friends");
 		txtpnYourFriends.setEditable(false);
-		txtpnYourFriends.setBounds(10, 21, 143, 20);
+		txtpnYourFriends.setBounds(10, 11, 132, 20);
 		panel_Friends.add(txtpnYourFriends);
 	}
 }
