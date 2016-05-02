@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import microchat.GUI.MicrochatGUI;
-import microchat.entity.UserPreferences;
 
 public class InputController {
 	private MicrochatGUI gui;
@@ -69,6 +68,46 @@ public class InputController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				eventManager.joinChatroom();
+				
+			}
+			
+		});
+		
+		gui.btnRemovechatroom.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				eventManager.removeChatroom();
+				
+			}
+			
+		});
+		
+		gui.btnAddFriend.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				eventManager.addFriend();
+				
+			}
+			
+		});
+		
+		gui.btnAddSelected.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				eventManager.addFriendFromList();
+				
+			}
+			
+		});
+		
+		gui.btnRemoveSelected.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				eventManager.removeFriend();
 				
 			}
 			

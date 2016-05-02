@@ -27,17 +27,73 @@ public class RelayserverHandler {
 				}
 			in.close();
 		} catch (MalformedURLException e) {
-			System.out.println("exception in validation");
 			e.printStackTrace();
+			return false;
 		} catch (IOException e) {
-			System.out.println("exception in validation");
 			e.printStackTrace();
+			return false;
 		}
 		
 		if (UserPreferences.AUTH_TOKEN.equals("-1"))
 			return false;
 		else
 			return true;
+	}
+	
+	public static boolean changePassword(String username, String password, String newPassword) {
+		String authenticateURL = "http://85.11.31.36:8080/RelayServer/account/changepsw?"
+				+"user=" + username
+				+"&oldPsw=" + password
+				+"&newPsw=" + newPassword;
+		URL urlInstance;
+		String result = "";
+		try {
+			urlInstance = new URL(authenticateURL);
+			URLConnection yc = urlInstance.openConnection();
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+                    yc.getInputStream()));
+			String inputLine;
+			while ((inputLine = in.readLine()) != null) {
+				result=inputLine;
+				}
+			in.close();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		if (result.equals("Password changed.")) return true;
+		else return false;
+	}
+	
+	public static boolean forgotPassword(String username) {
+		String authenticateURL = "http://85.11.31.36:8080/RelayServer/account/forgotpsw?user="
+				+ username;
+		URL urlInstance;
+		String result = "";
+		try {
+			urlInstance = new URL(authenticateURL);
+			URLConnection yc = urlInstance.openConnection();
+			BufferedReader in = new BufferedReader(new InputStreamReader(
+                    yc.getInputStream()));
+			String inputLine;
+			while ((inputLine = in.readLine()) != null) {
+				result=inputLine;
+				}
+			in.close();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			return false;
+		} catch (IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		if (result.equals("A new password has been sent to your email address.")) return true;
+		else return false;
 	}
 
 }

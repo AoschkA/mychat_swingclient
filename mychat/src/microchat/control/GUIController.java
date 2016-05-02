@@ -8,6 +8,8 @@ import microchat.handlers.DialogHandler;
 
 public class GUIController {
 	private MicrochatGUI gui;
+	private ArrayList<String> chatroomListData;
+	private ArrayList<String> friendListData;
 	
 	public GUIController(MicrochatGUI gui) {
 		this.gui=gui;
@@ -32,6 +34,18 @@ public class GUIController {
 		return gui.textField_writingblock.getText();
 	}
 	
+	public String getSelectedUser() {
+		return gui.list_chatuserlist.getSelectedValue();
+	}
+	
+	public String getAddedUsername() {
+		return gui.textField_addFriend.getText();
+	}
+	
+	public String getSelectedFriend() {
+		return gui.list_friends.getSelectedValue();
+	}
+	
 	public void eventLogin(boolean succeded){
 		System.out.println(UserPreferences.USERNAME);
 		System.out.println(UserPreferences.PASSWORD);
@@ -44,9 +58,31 @@ public class GUIController {
 	}
 	
 	public void eventListChatrooms(ArrayList<String> listData) {
+		chatroomListData = listData;
 		String[] arrayData = new String[listData.size()];
 		for (int i=0; i<listData.size(); i++) arrayData[i]=listData.get(i); 
 		gui.listChatrooms.setListData(arrayData);
+	}
+	
+	public void eventListFriends(ArrayList<String> listData) {
+		friendListData = listData;
+		String[] arrayData = new String[listData.size()];
+		for (int i=0; i<listData.size(); i++) arrayData[i]=listData.get(i); 
+		gui.list_friends.setListData(arrayData);;
+	}
+	
+	public void removeChatroom(String key) {
+		chatroomListData.remove(key);
+		String[] arrayData = new String[chatroomListData.size()];
+		for (int i=0; i<chatroomListData.size(); i++) arrayData[i]=chatroomListData.get(i); 
+		gui.listChatrooms.setListData(arrayData);
+	}
+	
+	public void removeFriend(String key) {
+		friendListData.remove(key);
+		String[] arrayData = new String[friendListData.size()];
+		for (int i=0; i<friendListData.size(); i++) arrayData[i]=friendListData.get(i); 
+		gui.list_friends.setListData(arrayData);
 	}
 	
 	public void eventUpdateChat() {

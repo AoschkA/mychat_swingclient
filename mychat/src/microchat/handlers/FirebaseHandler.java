@@ -35,12 +35,36 @@ public void authenticateToFirebase() {
 		});
 	}
 
+public void addFriend(String username) {
+	Firebase firebaseReference = new Firebase("https://micro-chat.firebaseio.com/users/"+
+			UserPreferences.USERNAME+"/friends/");
+	Map<String, Object> firebaseMap = new HashMap<String, Object>();
+	firebaseMap.put(username, 0);
+	firebaseReference.updateChildren(firebaseMap);
+}
+
 public void createChatroom(String chatroomName) {
 	Firebase firebaseReference = new Firebase("https://micro-chat.firebaseio.com/users/"+
 			UserPreferences.USERNAME+"/chatrooms/");
 	Map<String, Object> firebaseMap = new HashMap<String, Object>();
 	firebaseMap.put(chatroomName, 0);
 	firebaseReference.updateChildren(firebaseMap);
+}
+
+public void deleteChatroom(String chatroomName) {
+	Firebase firebaseReference = new Firebase("https://micro-chat.firebaseio.com/users/"+
+			UserPreferences.USERNAME+"/chatrooms/"+chatroomName+"/");
+	System.out.println("Deleting chatroom: "+chatroomName);
+	firebaseReference.removeValue();
+	firebaseReference.push();
+}
+
+public void deleteFriend(String username) {
+	Firebase firebaseReference = new Firebase("https://micro-chat.firebaseio.com/users/"+
+			UserPreferences.USERNAME+"/friends/"+username+"/");
+	System.out.println("Deleting friend: "+username);
+	firebaseReference.removeValue();
+	firebaseReference.push();
 }
 
 public void createMessage(String message) {
@@ -51,6 +75,46 @@ public void createMessage(String message) {
 	firebaseMap.put("message", message);
 	Firebase postref = firebaseReference.push();
 	postref.setValue(firebaseMap);
+}
+
+public void initiateFriendList() {
+	Firebase firebaseReference = new Firebase("https://micro-chat.firebaseio.com/users/"+
+			UserPreferences.USERNAME+"/friends/");
+	firebaseReference.addChildEventListener(new ChildEventListener() {
+
+		@Override
+		public void onCancelled(FirebaseError arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onChildAdded(DataSnapshot dataSnapshot, String arg1) {
+			if (!UserPreferences.FRIENDS.contains(dataSnapshot.getKey()))
+				UserPreferences.FRIENDS.add(dataSnapshot.getKey());
+			guiController.eventListFriends(UserPreferences.FRIENDS);
+			
+		}
+
+		@Override
+		public void onChildChanged(DataSnapshot arg0, String arg1) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onChildMoved(DataSnapshot arg0, String arg1) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onChildRemoved(DataSnapshot dataSnapshot) {
+			guiController.removeFriend(dataSnapshot.getKey());
+			
+		}
+		
+	});
 }
 
 public void initiateChatrooms() {
@@ -84,8 +148,8 @@ public void initiateChatrooms() {
 		}
 
 		@Override
-		public void onChildRemoved(DataSnapshot arg0) {
-			// TODO Auto-generated method stub
+		public void onChildRemoved(DataSnapshot dataSnapshot) {
+			guiController.removeChatroom(dataSnapshot.getKey());
 			
 		}
 		

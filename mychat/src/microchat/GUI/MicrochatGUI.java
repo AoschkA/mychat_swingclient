@@ -46,6 +46,7 @@ public class MicrochatGUI extends JFrame {
 	public JButton btnRemoveSelected;
 	public JTextPane txtpnYourFriends;
 	public JScrollPane scrollPane_chat;
+	public JButton btnRemovechatroom;
 
 	/**
 	 * Launch the application.
@@ -181,6 +182,10 @@ public class MicrochatGUI extends JFrame {
 		btnJoinchatroom.setToolTipText("open selected chatroom");
 		btnJoinchatroom.setBounds(163, 38, 89, 23);
 		panel_chatrooms.add(btnJoinchatroom);
+		
+		btnRemovechatroom = new JButton("Remove");
+		btnRemovechatroom.setBounds(163, 72, 89, 23);
+		panel_chatrooms.add(btnRemovechatroom);
 		
 		panel_Friends = new JPanel();
 		panel_Friends.setBackground(new Color(255, 102, 51));
