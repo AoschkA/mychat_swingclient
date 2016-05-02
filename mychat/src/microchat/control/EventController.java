@@ -1,20 +1,27 @@
 package microchat.control;
 
-import javax.swing.JOptionPane;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import microchat.GUI.FileExploreGUI;
 import microchat.GUI.MicrochatGUI;
 import microchat.entity.UserPreferences;
 import microchat.handlers.DialogHandler;
+import microchat.handlers.FileserverHandler;
 import microchat.handlers.FirebaseHandler;
 import microchat.handlers.RelayserverHandler;
 
 public class EventController {
 	private FirebaseHandler firebaseHandler;
 	private GUIController guiController;
+	private FileserverHandler fileserverHandler;
+	private FileExploreGUI exploreGUI;
 
 	public EventController(MicrochatGUI gui) {
 		guiController = new GUIController(gui);
 		firebaseHandler = new FirebaseHandler(guiController);
+		fileserverHandler = new FileserverHandler();
 	}
 
 	public void writeMessage() {
@@ -39,11 +46,22 @@ public class EventController {
 			firebaseHandler.authenticateToFirebase();
 			firebaseHandler.initiateChatrooms();
 			firebaseHandler.initiateFriendList();
+			updateFilelist();
 			guiController.eventListChatrooms(UserPreferences.CHATROOMS);
 		} else {
 			guiController.loginFailure();
 		}
 		return validated;
+	}
+	
+	public void updateFilelist() {
+		List<String> fileList = new ArrayList<String>();
+		try {
+			fileList = fileserverHandler.listFiles("s974489", UserPreferences.USERNAME, UserPreferences.PASSWORD);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		guiController.eventUpdateFilelist(fileList);
 	}
 
 	public void addChatroom() {
@@ -84,6 +102,12 @@ public class EventController {
 	public void forgotPassword(String username) {
 		boolean result = RelayserverHandler.forgotPassword(username);
 		PopForgotPasswordGUIController.closeGUI(result);
+	}
+	
+	public void openFileExplore() {
+		exploreGUI = new FileExploreGUI();
+		String filePath = exploreGUI.m_display.getText();
+		System.out.println(filePath);
 	}
 	
 

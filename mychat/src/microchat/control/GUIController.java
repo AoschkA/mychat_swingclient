@@ -1,6 +1,7 @@
 package microchat.control;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JOptionPane;
 
@@ -89,6 +90,13 @@ public class GUIController {
 	
 	public void loginFailure() {
 		JOptionPane.showMessageDialog(gui.getContentPane(), "Wrong username and password combination", "Failed to login",JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public void eventUpdateFilelist(List<String> fileList) {
+		String[] arrayData = new String[fileList.size()];
+		for (int i=1; i<fileList.size(); i++) arrayData[i]=fileList.get(i)
+				.substring(1, fileList.get(i).length()-1); 
+		gui.list_files.setListData(arrayData);
 	}
 	
 	public void eventUpdateChat() {

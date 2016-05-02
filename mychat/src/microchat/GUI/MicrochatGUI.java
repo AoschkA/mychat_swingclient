@@ -13,6 +13,7 @@ import javax.swing.JList;
 import javax.swing.ListSelectionModel;
 import java.awt.Color;
 import javax.swing.JScrollPane;
+import java.awt.Font;
 
 public class MicrochatGUI extends JFrame {
 
@@ -48,9 +49,18 @@ public class MicrochatGUI extends JFrame {
 	public JButton btnRemovechatroom;
 	public JButton btnForgotPassword;
 	public JButton btnChangePassword;
+	public JList<String> list_files;
+	public JTextField textField_pathToFile;
+	public JTextPane txtpnFileserver;
+	public JPanel panel_fileserver;
+	public JButton btnBrowse;
+	public JButton btnUpload;
+	public JTextPane txtpnFileList;
+	public JButton btnDownload;
+	public JButton btnUpdateFilelist;
 
 	/**
-	 * Launch the application.
+	 * Test the GUI layout
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -192,7 +202,7 @@ public class MicrochatGUI extends JFrame {
 		btnJoinchatroom.setBounds(163, 38, 89, 23);
 		panel_chatrooms.add(btnJoinchatroom);
 		
-		btnRemovechatroom = new JButton("Remove");
+		btnRemovechatroom = new JButton("REMOVE");
 		btnRemovechatroom.setBounds(163, 72, 89, 23);
 		panel_chatrooms.add(btnRemovechatroom);
 		
@@ -228,5 +238,50 @@ public class MicrochatGUI extends JFrame {
 		txtpnYourFriends.setEditable(false);
 		txtpnYourFriends.setBounds(10, 11, 132, 20);
 		panel_Friends.add(txtpnYourFriends);
+		
+		panel_fileserver = new JPanel();
+		panel_fileserver.setBackground(new Color(250, 250, 210));
+		panel_fileserver.setBounds(821, 180, 235, 555);
+		contentPane.add(panel_fileserver);
+		panel_fileserver.setLayout(null);
+		
+		txtpnFileserver = new JTextPane();
+		txtpnFileserver.setBackground(new Color(250, 250, 210));
+		txtpnFileserver.setFont(new Font("Trebuchet MS", Font.PLAIN, 14));
+		txtpnFileserver.setText("Fileserver");
+		txtpnFileserver.setEditable(false);
+		txtpnFileserver.setBounds(10, 11, 92, 20);
+		panel_fileserver.add(txtpnFileserver);
+		
+		list_files = new JList<String>();
+		list_files.setBounds(20, 96, 190, 387);
+		panel_fileserver.add(list_files);
+		
+		textField_pathToFile = new JTextField();
+		textField_pathToFile.setBounds(30, 494, 125, 20);
+		panel_fileserver.add(textField_pathToFile);
+		textField_pathToFile.setColumns(10);
+		
+		btnBrowse = new JButton("...");
+		btnBrowse.setBounds(165, 493, 45, 23);
+		panel_fileserver.add(btnBrowse);
+		
+		btnUpload = new JButton("Upload");
+		btnUpload.setBounds(66, 521, 89, 23);
+		panel_fileserver.add(btnUpload);
+		
+		txtpnFileList = new JTextPane();
+		txtpnFileList.setText("Files to download");
+		txtpnFileList.setBackground(new Color(250, 250, 210));
+		txtpnFileList.setBounds(20, 40, 92, 45);
+		panel_fileserver.add(txtpnFileList);
+		
+		btnDownload = new JButton("DOWNLOAD");
+		btnDownload.setBounds(131, 26, 94, 23);
+		panel_fileserver.add(btnDownload);
+		
+		btnUpdateFilelist = new JButton("UPDATE");
+		btnUpdateFilelist.setBounds(131, 62, 94, 23);
+		panel_fileserver.add(btnUpdateFilelist);
 	}
 }

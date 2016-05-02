@@ -136,6 +136,26 @@ public class InputController {
 			}
 			
 		});
+		
+		gui.btnUpdateFilelist.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				eventManager.updateFilelist();
+				
+			}
+			
+		});
+		
+		gui.btnBrowse.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				eventManager.openFileExplore();
+				
+			}
+			
+		});
 
 	}
 
