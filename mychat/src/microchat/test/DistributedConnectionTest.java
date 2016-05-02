@@ -6,6 +6,7 @@ import microchat.handlers.RelayserverHandler;
 
 public class DistributedConnectionTest {
 	
+	@SuppressWarnings("static-access")
 	public static void main(String[] args) {
 		FirebaseHandler firebaseHandler = new FirebaseHandler(null);
 		RelayserverHandler relayHandler = new RelayserverHandler();

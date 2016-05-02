@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JButton;
-import javax.swing.UIManager;
 import javax.swing.JPasswordField;
 import javax.swing.JTextPane;
 import javax.swing.JList;
@@ -47,6 +46,8 @@ public class MicrochatGUI extends JFrame {
 	public JTextPane txtpnYourFriends;
 	public JScrollPane scrollPane_chat;
 	public JButton btnRemovechatroom;
+	public JButton btnForgotPassword;
+	public JButton btnChangePassword;
 
 	/**
 	 * Launch the application.
@@ -150,11 +151,11 @@ public class MicrochatGUI extends JFrame {
 		txtpnCurrentToken.setBounds(10, 92, 481, 60);
 		panel_login.add(txtpnCurrentToken);
 		
-		JButton btnChangePassword = new JButton("CHANGE PASSWORD");
+		btnChangePassword = new JButton("CHANGE PASSWORD");
 		btnChangePassword.setBounds(321, 22, 181, 23);
 		panel_login.add(btnChangePassword);
 		
-		JButton btnForgotPassword = new JButton("FORGOT PASSWORD");
+		btnForgotPassword = new JButton("FORGOT PASSWORD");
 		btnForgotPassword.setBounds(321, 58, 181, 23);
 		panel_login.add(btnForgotPassword);
 		

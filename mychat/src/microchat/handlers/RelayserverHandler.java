@@ -45,6 +45,7 @@ public class RelayserverHandler {
 				+"user=" + username
 				+"&oldPsw=" + password
 				+"&newPsw=" + newPassword;
+		System.out.println(username + " " + password + " "+ newPassword);
 		URL urlInstance;
 		String result = "";
 		try {

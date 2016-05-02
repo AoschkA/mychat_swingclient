@@ -1,5 +1,7 @@
 package microchat.control;
 
+import javax.swing.JOptionPane;
+
 import microchat.GUI.MicrochatGUI;
 import microchat.entity.UserPreferences;
 import microchat.handlers.DialogHandler;
@@ -37,8 +39,9 @@ public class EventController {
 			firebaseHandler.authenticateToFirebase();
 			firebaseHandler.initiateChatrooms();
 			firebaseHandler.initiateFriendList();
-			System.out.println(UserPreferences.CHATROOMS);
 			guiController.eventListChatrooms(UserPreferences.CHATROOMS);
+		} else {
+			guiController.loginFailure();
 		}
 		return validated;
 	}
@@ -71,6 +74,16 @@ public class EventController {
 		String username = guiController.getSelectedFriend();
 		if (!username.equals("")) 
 			firebaseHandler.deleteFriend(username);
+	}
+	
+	public void changePassword(String[] userDetails) {
+		boolean result = RelayserverHandler.changePassword(userDetails[0], userDetails[1], userDetails[2]);
+		PopChangePasswordGUIController.closeGUI(result);
+	}
+	
+	public void forgotPassword(String username) {
+		boolean result = RelayserverHandler.forgotPassword(username);
+		PopForgotPasswordGUIController.closeGUI(result);
 	}
 	
 

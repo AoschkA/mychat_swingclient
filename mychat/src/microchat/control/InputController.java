@@ -11,10 +11,14 @@ import microchat.GUI.MicrochatGUI;
 public class InputController {
 	private MicrochatGUI gui;
 	private EventController eventManager;
+	private PopChangePasswordGUIController popChangePasswordGUIController;
+	private PopForgotPasswordGUIController popForgotPasswordGUIController;
 
 	public InputController() {
 		gui = new MicrochatGUI();
 		eventManager = new EventController(gui);
+		popChangePasswordGUIController = new PopChangePasswordGUIController(eventManager);
+		popForgotPasswordGUIController = new PopForgotPasswordGUIController(eventManager);
 		addListeners();
 		addKeyListeners();
 	}
@@ -108,6 +112,26 @@ public class InputController {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				eventManager.removeFriend();
+				
+			}
+			
+		});
+		
+		gui.btnChangePassword.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				popChangePasswordGUIController.openGUI();
+				
+			}
+			
+		});
+		
+		gui.btnForgotPassword.addActionListener(new ActionListener(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				popForgotPasswordGUIController.openGUI();
 				
 			}
 			

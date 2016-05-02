@@ -2,6 +2,8 @@ package microchat.control;
 
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import microchat.GUI.MicrochatGUI;
 import microchat.entity.UserPreferences;
 import microchat.handlers.DialogHandler;
@@ -83,6 +85,10 @@ public class GUIController {
 		String[] arrayData = new String[friendListData.size()];
 		for (int i=0; i<friendListData.size(); i++) arrayData[i]=friendListData.get(i); 
 		gui.list_friends.setListData(arrayData);
+	}
+	
+	public void loginFailure() {
+		JOptionPane.showMessageDialog(gui.getContentPane(), "Wrong username and password combination", "Failed to login",JOptionPane.ERROR_MESSAGE);
 	}
 	
 	public void eventUpdateChat() {
