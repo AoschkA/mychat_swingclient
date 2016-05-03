@@ -130,7 +130,7 @@ public class EventController {
 			fileserverHandler.downloadFile(
 					"s974489", 
 					selectedFile, 
-					System.getProperty("user.dir"), 
+					System.getProperty("user.dir")+"\\", 
 					UserPreferences.USERNAME, 
 					UserPreferences.PASSWORD);
 		} catch (IOException e) {
