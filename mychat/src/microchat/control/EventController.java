@@ -58,7 +58,7 @@ public class EventController {
 	public void updateFilelist() {
 		List<String> fileList = new ArrayList<String>();
 		try {
-			fileList = fileserverHandler.listFiles("s974489", UserPreferences.USERNAME, UserPreferences.PASSWORD);
+			fileList = fileserverHandler.listFiles(UserPreferences.USERNAME, UserPreferences.USERNAME, UserPreferences.PASSWORD);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -128,9 +128,22 @@ public class EventController {
 		String selectedFile = guiController.getSelectedFile();
 		try {
 			fileserverHandler.downloadFile(
-					"s974489", 
+					UserPreferences.USERNAME, 
 					selectedFile, 
 					System.getProperty("user.dir")+"\\", 
+					UserPreferences.USERNAME, 
+					UserPreferences.PASSWORD);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void removeFile() {
+		String selectedFile = guiController.getSelectedFile();
+		try {
+			fileserverHandler.deleteFile(
+					UserPreferences.USERNAME, 
+					selectedFile, 
 					UserPreferences.USERNAME, 
 					UserPreferences.PASSWORD);
 		} catch (IOException e) {

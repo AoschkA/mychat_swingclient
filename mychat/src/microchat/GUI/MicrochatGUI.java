@@ -60,7 +60,7 @@ public class MicrochatGUI extends JFrame {
 	public JButton btnUpdateFilelist;
 	private JScrollPane scrollPane_friends;
 	private JScrollPane scrollPane_filelist;
-	private JButton btnRemoveFile;
+	public JButton btnRemoveFile;
 
 	/**
 	 * Test the GUI layout
