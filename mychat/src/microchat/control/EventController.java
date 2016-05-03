@@ -111,10 +111,12 @@ public class EventController {
 	}
 
 	public void uploadFile() {
-		if (!guiController.getFilePath().equals("")) {
+		String filePath = guiController.getFilePath();
+		if (!filePath.equals("")) {
+			System.out.println(filePath);
 			try {
 				fileserverHandler.uploadFile(
-						guiController.getFilePath(), 
+						filePath, 
 						UserPreferences.USERNAME, 
 						UserPreferences.PASSWORD);
 			} catch (IOException e) {
