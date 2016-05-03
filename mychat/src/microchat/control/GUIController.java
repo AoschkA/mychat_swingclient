@@ -26,7 +26,9 @@ public class GUIController {
 	}
 	
 	public String getChatroomDetails() {
-		return gui.textField_chatroomwriter.getText();
+		String chatroomDetails = gui.textField_chatroomWriter.getText();
+		gui.textField_chatroomWriter.setText("");
+		return chatroomDetails;
 	}
 	
 	public String getChosenChatroom() {
@@ -34,7 +36,9 @@ public class GUIController {
 	}
 	
 	public String getWrittenMessage() {
-		return gui.textField_writingblock.getText();
+		String writtenMessage = gui.textField_writingblock.getText();
+		gui.textField_writingblock.setText("");
+		return writtenMessage;
 	}
 	
 	public String getSelectedUser() {
@@ -42,7 +46,9 @@ public class GUIController {
 	}
 	
 	public String getAddedUsername() {
-		return gui.textField_addFriend.getText();
+		String username = gui.textField_addFriendWriter.getText();
+		gui.textField_addFriendWriter.setText("");
+		return username;
 	}
 	
 	public String getSelectedFriend() {
@@ -109,9 +115,10 @@ public class GUIController {
 		DialogHandler.generateChat(gui.textPane_chat);
 	}
 	
-	
-	public void writeMessage() {
-		gui.textField_writingblock.setText("");
+	public String getFilePath() {
+		String filepath = gui.textField_pathToFileWriter.getText();
+		gui.textField_pathToFileWriter.setText("");
+		return filepath;
 	}
 
 }

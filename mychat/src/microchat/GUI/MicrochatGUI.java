@@ -30,7 +30,7 @@ public class MicrochatGUI extends JFrame {
 	public JTextPane txtpnLoggedInAs;
 	public JTextPane txtpnCurrentToken;
 	public JPanel panel_chatrooms;
-	public JTextField textField_chatroomwriter;
+	public JTextField textField_chatroomWriter;
 	public JButton btnCreateChatroom;
 	public JList<String> listChatrooms;
 	public JTextPane txtpnYourChatrooms;
@@ -38,7 +38,7 @@ public class MicrochatGUI extends JFrame {
 	public JPanel panel_Friends;
 	public JTextPane txtpnInThisChat;
 	public JList<String> list_friends;
-	public JTextField textField_addFriend;
+	public JTextField textField_addFriendWriter;
 	public JList<String> list_chatuserlist;
 	public JButton btnAddSelected;
 	public JButton btnAddFriend;
@@ -50,7 +50,7 @@ public class MicrochatGUI extends JFrame {
 	public JButton btnForgotPassword;
 	public JButton btnChangePassword;
 	public JList<String> list_files;
-	public JTextField textField_pathToFile;
+	public JTextField textField_pathToFileWriter;
 	public JTextPane txtpnFileserver;
 	public JPanel panel_fileserver;
 	public JButton btnBrowse;
@@ -58,6 +58,8 @@ public class MicrochatGUI extends JFrame {
 	public JTextPane txtpnFileList;
 	public JButton btnDownload;
 	public JButton btnUpdateFilelist;
+	private JScrollPane scrollPane_friends;
+	private JScrollPane scrollPane_filelist;
 
 	/**
 	 * Test the GUI layout
@@ -175,20 +177,15 @@ public class MicrochatGUI extends JFrame {
 		contentPane.add(panel_chatrooms);
 		panel_chatrooms.setLayout(null);
 		
-		listChatrooms = new JList<String>();
-		listChatrooms.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		listChatrooms.setBounds(10, 38, 143, 231);
-		panel_chatrooms.add(listChatrooms);
-		
 		btnCreateChatroom = new JButton("JOIN");
 		btnCreateChatroom.setToolTipText("join chatroom");
 		btnCreateChatroom.setBounds(162, 279, 90, 22);
 		panel_chatrooms.add(btnCreateChatroom);
 		
-		textField_chatroomwriter = new JTextField();
-		textField_chatroomwriter.setBounds(10, 280, 143, 20);
-		panel_chatrooms.add(textField_chatroomwriter);
-		textField_chatroomwriter.setColumns(10);
+		textField_chatroomWriter = new JTextField();
+		textField_chatroomWriter.setBounds(10, 280, 143, 20);
+		panel_chatrooms.add(textField_chatroomWriter);
+		textField_chatroomWriter.setColumns(10);
 		
 		txtpnYourChatrooms = new JTextPane();
 		txtpnYourChatrooms.setBackground(new Color(250, 250, 210));
@@ -206,21 +203,24 @@ public class MicrochatGUI extends JFrame {
 		btnRemovechatroom.setBounds(163, 72, 89, 23);
 		panel_chatrooms.add(btnRemovechatroom);
 		
+		JScrollPane scrollPane_chatrooms = new JScrollPane();
+		scrollPane_chatrooms.setBounds(10, 29, 143, 240);
+		panel_chatrooms.add(scrollPane_chatrooms);
+		
+		listChatrooms = new JList<String>();
+		scrollPane_chatrooms.setViewportView(listChatrooms);
+		listChatrooms.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
 		panel_Friends = new JPanel();
 		panel_Friends.setBackground(new Color(250, 250, 210));
 		panel_Friends.setBounds(544, 491, 267, 244);
 		contentPane.add(panel_Friends);
 		panel_Friends.setLayout(null);
 		
-		list_friends = new JList<String>();
-		list_friends.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list_friends.setBounds(10, 42, 132, 138);
-		panel_Friends.add(list_friends);
-		
-		textField_addFriend = new JTextField();
-		textField_addFriend.setBounds(10, 191, 132, 20);
-		panel_Friends.add(textField_addFriend);
-		textField_addFriend.setColumns(10);
+		textField_addFriendWriter = new JTextField();
+		textField_addFriendWriter.setBounds(10, 191, 132, 20);
+		panel_Friends.add(textField_addFriendWriter);
+		textField_addFriendWriter.setColumns(10);
 		
 		btnAddFriend = new JButton("ADD");
 		btnAddFriend.setToolTipText("add new friend");
@@ -229,7 +229,7 @@ public class MicrochatGUI extends JFrame {
 		
 		btnRemoveSelected = new JButton("REMOVE");
 		btnRemoveSelected.setToolTipText("remove selected friend");
-		btnRemoveSelected.setBounds(152, 39, 89, 23);
+		btnRemoveSelected.setBounds(168, 39, 89, 23);
 		panel_Friends.add(btnRemoveSelected);
 		
 		txtpnYourFriends = new JTextPane();
@@ -238,6 +238,14 @@ public class MicrochatGUI extends JFrame {
 		txtpnYourFriends.setEditable(false);
 		txtpnYourFriends.setBounds(10, 11, 132, 20);
 		panel_Friends.add(txtpnYourFriends);
+		
+		scrollPane_friends = new JScrollPane();
+		scrollPane_friends.setBounds(10, 29, 148, 151);
+		panel_Friends.add(scrollPane_friends);
+		
+		list_friends = new JList<String>();
+		scrollPane_friends.setViewportView(list_friends);
+		list_friends.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 		panel_fileserver = new JPanel();
 		panel_fileserver.setBackground(new Color(250, 250, 210));
@@ -253,14 +261,10 @@ public class MicrochatGUI extends JFrame {
 		txtpnFileserver.setBounds(10, 11, 92, 20);
 		panel_fileserver.add(txtpnFileserver);
 		
-		list_files = new JList<String>();
-		list_files.setBounds(20, 96, 190, 387);
-		panel_fileserver.add(list_files);
-		
-		textField_pathToFile = new JTextField();
-		textField_pathToFile.setBounds(30, 494, 125, 20);
-		panel_fileserver.add(textField_pathToFile);
-		textField_pathToFile.setColumns(10);
+		textField_pathToFileWriter = new JTextField();
+		textField_pathToFileWriter.setBounds(30, 494, 125, 20);
+		panel_fileserver.add(textField_pathToFileWriter);
+		textField_pathToFileWriter.setColumns(10);
 		
 		btnBrowse = new JButton("...");
 		btnBrowse.setBounds(165, 493, 45, 23);
@@ -271,9 +275,10 @@ public class MicrochatGUI extends JFrame {
 		panel_fileserver.add(btnUpload);
 		
 		txtpnFileList = new JTextPane();
-		txtpnFileList.setText("Files to download");
+		txtpnFileList.setFont(new Font("Sitka Heading", Font.BOLD, 11));
+		txtpnFileList.setText("File list");
 		txtpnFileList.setBackground(new Color(250, 250, 210));
-		txtpnFileList.setBounds(20, 40, 92, 45);
+		txtpnFileList.setBounds(10, 62, 92, 20);
 		panel_fileserver.add(txtpnFileList);
 		
 		btnDownload = new JButton("DOWNLOAD");
@@ -283,5 +288,12 @@ public class MicrochatGUI extends JFrame {
 		btnUpdateFilelist = new JButton("UPDATE");
 		btnUpdateFilelist.setBounds(131, 62, 94, 23);
 		panel_fileserver.add(btnUpdateFilelist);
+		
+		scrollPane_filelist = new JScrollPane();
+		scrollPane_filelist.setBounds(10, 96, 200, 387);
+		panel_fileserver.add(scrollPane_filelist);
+		
+		list_files = new JList<String>();
+		scrollPane_filelist.setViewportView(list_files);
 	}
 }

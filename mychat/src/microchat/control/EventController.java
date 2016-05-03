@@ -27,7 +27,6 @@ public class EventController {
 	public void writeMessage() {
 		if (!guiController.getWrittenMessage().equals("")){
 			firebaseHandler.createMessage(guiController.getWrittenMessage());
-			guiController.writeMessage();
 		}
 	}
 
@@ -53,7 +52,7 @@ public class EventController {
 		}
 		return validated;
 	}
-	
+
 	public void updateFilelist() {
 		List<String> fileList = new ArrayList<String>();
 		try {
@@ -66,7 +65,8 @@ public class EventController {
 
 	public void addChatroom() {
 		String chatroomName = guiController.getChatroomDetails();
-		firebaseHandler.createChatroom(chatroomName);
+		if (!chatroomName.equals(""))
+			firebaseHandler.createChatroom(chatroomName);
 	}
 
 	public void joinChatroom() {
@@ -76,40 +76,52 @@ public class EventController {
 		firebaseHandler.initiateChat();
 		guiController.eventUpdateChat();
 	}
-	
+
 	public void addFriendFromList() {
 		String username = guiController.getSelectedUser();
 		firebaseHandler.addFriend(username);
 	}
-	
+
 	public void addFriend() {
 		String username = guiController.getAddedUsername();
 		if (!username.equals("")) 
 			firebaseHandler.addFriend(username);
 	}
-	
+
 	public void removeFriend() {
 		String username = guiController.getSelectedFriend();
 		if (!username.equals("")) 
 			firebaseHandler.deleteFriend(username);
 	}
-	
+
 	public void changePassword(String[] userDetails) {
 		boolean result = RelayserverHandler.changePassword(userDetails[0], userDetails[1], userDetails[2]);
 		PopChangePasswordGUIController.closeGUI(result);
 	}
-	
+
 	public void forgotPassword(String username) {
 		boolean result = RelayserverHandler.forgotPassword(username);
 		PopForgotPasswordGUIController.closeGUI(result);
 	}
-	
+
 	public void openFileExplore() {
 		exploreGUI = new FileExploreGUI();
-		String filePath = exploreGUI.m_display.getText();
-		System.out.println(filePath);
 	}
-	
+
+	public void uploadFile() {
+		if (!guiController.getFilePath().equals("")) {
+			try {
+				fileserverHandler.uploadFile(
+						guiController.getFilePath(), 
+						UserPreferences.USERNAME, 
+						UserPreferences.PASSWORD);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
 
 
 }
