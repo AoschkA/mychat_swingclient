@@ -61,6 +61,9 @@ public class MicrochatGUI extends JFrame {
 	private JScrollPane scrollPane_friends;
 	private JScrollPane scrollPane_filelist;
 	public JButton btnRemoveFile;
+	public JTextField textField_chatroomPassword;
+	private JTextPane txtpnThisIsYour;
+	private JTextPane txtpnAddFriendsFrom;
 
 	/**
 	 * Test the GUI layout
@@ -96,7 +99,7 @@ public class MicrochatGUI extends JFrame {
 		contentPane.add(panel_chat);
 		panel_chat.setLayout(null);
 		
-		btnSend = new JButton("SEND");
+		btnSend = new JButton("Send");
 		btnSend.setToolTipText("send message");
 		btnSend.setBounds(425, 656, 89, 23);
 		panel_chat.add(btnSend);
@@ -110,13 +113,13 @@ public class MicrochatGUI extends JFrame {
 		list_chatuserlist.setBounds(368, 58, 118, 307);
 		panel_chat.add(list_chatuserlist);
 		
-		btnAddSelected = new JButton("ADD SELECTED");
+		btnAddSelected = new JButton("Add selected");
 		btnAddSelected.setToolTipText("add selected user to friendlist");
-		btnAddSelected.setBounds(368, 376, 120, 23);
+		btnAddSelected.setBounds(366, 421, 120, 23);
 		panel_chat.add(btnAddSelected);
 		
 		txtpnInThisChat = new JTextPane();
-		txtpnInThisChat.setForeground(new Color(255, 255, 255));
+		txtpnInThisChat.setForeground(new Color(0, 0, 0));
 		txtpnInThisChat.setBackground(new Color(143, 188, 143));
 		txtpnInThisChat.setEditable(false);
 		txtpnInThisChat.setText("In this chat:");
@@ -131,6 +134,14 @@ public class MicrochatGUI extends JFrame {
 		scrollPane_chat.setViewportView(textPane_chat);
 		textPane_chat.setEditable(false);
 		
+		txtpnAddFriendsFrom = new JTextPane();
+		txtpnAddFriendsFrom.setText("Add friends from the chatlist directly here");
+		txtpnAddFriendsFrom.setFont(new Font("Sitka Subheading", Font.PLAIN, 11));
+		txtpnAddFriendsFrom.setEditable(false);
+		txtpnAddFriendsFrom.setBackground(new Color(143, 188, 143));
+		txtpnAddFriendsFrom.setBounds(368, 376, 118, 34);
+		panel_chat.add(txtpnAddFriendsFrom);
+		
 		panel_login = new JPanel();
 		panel_login.setBackground(new Color(250, 250, 210));
 		panel_login.setBounds(544, 10, 512, 164);
@@ -141,7 +152,8 @@ public class MicrochatGUI extends JFrame {
 		textField_password.setBounds(113, 23, 99, 20);
 		panel_login.add(textField_password);
 		
-		btnLogin = new JButton("LOGIN");
+		btnLogin = new JButton("Login");
+		btnLogin.setToolTipText("login with entered user details");
 		btnLogin.setBounds(222, 22, 89, 23);
 		panel_login.add(btnLogin);
 		
@@ -164,35 +176,37 @@ public class MicrochatGUI extends JFrame {
 		txtpnCurrentToken.setBounds(10, 92, 481, 60);
 		panel_login.add(txtpnCurrentToken);
 		
-		btnChangePassword = new JButton("CHANGE PASSWORD");
+		btnChangePassword = new JButton("Change password");
+		btnChangePassword.setToolTipText("change your password");
 		btnChangePassword.setBounds(321, 22, 181, 23);
 		panel_login.add(btnChangePassword);
 		
-		btnForgotPassword = new JButton("FORGOT PASSWORD");
+		btnForgotPassword = new JButton("Forgot password");
+		btnForgotPassword.setToolTipText("forgot your password?");
 		btnForgotPassword.setBounds(321, 58, 181, 23);
 		panel_login.add(btnForgotPassword);
 		
 		panel_chatrooms = new JPanel();
 		panel_chatrooms.setBackground(new Color(250, 250, 210));
-		panel_chatrooms.setBounds(544, 179, 267, 308);
+		panel_chatrooms.setBounds(544, 179, 267, 327);
 		contentPane.add(panel_chatrooms);
 		panel_chatrooms.setLayout(null);
 		
 		JScrollPane scrollPane_chatrooms = new JScrollPane();
-		scrollPane_chatrooms.setBounds(10, 29, 143, 240);
+		scrollPane_chatrooms.setBounds(10, 29, 143, 211);
 		panel_chatrooms.add(scrollPane_chatrooms);
 		
 		listChatrooms = new JList<String>();
 		scrollPane_chatrooms.setViewportView(listChatrooms);
 		listChatrooms.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		btnCreateChatroom = new JButton("JOIN");
-		btnCreateChatroom.setToolTipText("join chatroom");
-		btnCreateChatroom.setBounds(162, 279, 90, 22);
+		btnCreateChatroom = new JButton("Join");
+		btnCreateChatroom.setToolTipText("join chatroom, provide password if required");
+		btnCreateChatroom.setBounds(162, 263, 90, 22);
 		panel_chatrooms.add(btnCreateChatroom);
 		
 		textField_chatroomWriter = new JTextField();
-		textField_chatroomWriter.setBounds(10, 280, 143, 20);
+		textField_chatroomWriter.setBounds(10, 264, 143, 20);
 		panel_chatrooms.add(textField_chatroomWriter);
 		textField_chatroomWriter.setColumns(10);
 		
@@ -203,18 +217,40 @@ public class MicrochatGUI extends JFrame {
 		txtpnYourChatrooms.setBounds(10, 11, 143, 22);
 		panel_chatrooms.add(txtpnYourChatrooms);
 		
-		btnJoinchatroom = new JButton("OPEN");
+		btnJoinchatroom = new JButton("Open");
 		btnJoinchatroom.setToolTipText("open selected chatroom");
 		btnJoinchatroom.setBounds(163, 38, 89, 23);
 		panel_chatrooms.add(btnJoinchatroom);
 		
-		btnRemovechatroom = new JButton("REMOVE");
+		btnRemovechatroom = new JButton("Remove");
+		btnRemovechatroom.setToolTipText("remove selected chatroom");
 		btnRemovechatroom.setBounds(163, 72, 89, 23);
 		panel_chatrooms.add(btnRemovechatroom);
 		
+		textField_chatroomPassword = new JTextField();
+		textField_chatroomPassword.setBounds(10, 296, 143, 20);
+		panel_chatrooms.add(textField_chatroomPassword);
+		textField_chatroomPassword.setColumns(10);
+		
+		JTextPane txtpnChatroomId = new JTextPane();
+		txtpnChatroomId.setBackground(new Color(250, 250, 210));
+		txtpnChatroomId.setFont(new Font("Sitka Subheading", Font.PLAIN, 11));
+		txtpnChatroomId.setText("Chatroom id:");
+		txtpnChatroomId.setEditable(false);
+		txtpnChatroomId.setBounds(10, 245, 90, 20);
+		panel_chatrooms.add(txtpnChatroomId);
+		
+		JTextPane txtpnProvidePasswordIf = new JTextPane();
+		txtpnProvidePasswordIf.setText("provide password if required");
+		txtpnProvidePasswordIf.setFont(new Font("Sitka Subheading", Font.PLAIN, 10));
+		txtpnProvidePasswordIf.setEditable(false);
+		txtpnProvidePasswordIf.setBackground(new Color(250, 250, 210));
+		txtpnProvidePasswordIf.setBounds(162, 288, 90, 52);
+		panel_chatrooms.add(txtpnProvidePasswordIf);
+		
 		panel_Friends = new JPanel();
 		panel_Friends.setBackground(new Color(250, 250, 210));
-		panel_Friends.setBounds(544, 491, 267, 244);
+		panel_Friends.setBounds(544, 511, 267, 224);
 		contentPane.add(panel_Friends);
 		panel_Friends.setLayout(null);
 		
@@ -231,12 +267,12 @@ public class MicrochatGUI extends JFrame {
 		panel_Friends.add(textField_addFriendWriter);
 		textField_addFriendWriter.setColumns(10);
 		
-		btnAddFriend = new JButton("ADD");
+		btnAddFriend = new JButton("Add");
 		btnAddFriend.setToolTipText("add new friend");
 		btnAddFriend.setBounds(152, 190, 89, 23);
 		panel_Friends.add(btnAddFriend);
 		
-		btnRemoveSelected = new JButton("REMOVE");
+		btnRemoveSelected = new JButton("Remove");
 		btnRemoveSelected.setToolTipText("remove selected friend");
 		btnRemoveSelected.setBounds(168, 39, 89, 23);
 		panel_Friends.add(btnRemoveSelected);
@@ -275,10 +311,12 @@ public class MicrochatGUI extends JFrame {
 		textField_pathToFileWriter.setColumns(10);
 		
 		btnBrowse = new JButton("...");
+		btnBrowse.setToolTipText("browse your system");
 		btnBrowse.setBounds(165, 493, 45, 23);
 		panel_fileserver.add(btnBrowse);
 		
 		btnUpload = new JButton("Upload");
+		btnUpload.setToolTipText("upload file");
 		btnUpload.setBounds(66, 521, 89, 23);
 		panel_fileserver.add(btnUpload);
 		
@@ -289,16 +327,25 @@ public class MicrochatGUI extends JFrame {
 		txtpnFileList.setBounds(10, 89, 92, 20);
 		panel_fileserver.add(txtpnFileList);
 		
-		btnDownload = new JButton("DOWNLOAD");
+		btnDownload = new JButton("Download");
 		btnDownload.setBounds(112, 11, 113, 23);
 		panel_fileserver.add(btnDownload);
 		
-		btnUpdateFilelist = new JButton("UPDATE");
+		btnUpdateFilelist = new JButton("Update");
+		btnUpdateFilelist.setToolTipText("update filelist");
 		btnUpdateFilelist.setBounds(112, 86, 113, 23);
 		panel_fileserver.add(btnUpdateFilelist);
 		
-		btnRemoveFile = new JButton("REMOVE");
+		btnRemoveFile = new JButton("Remove");
 		btnRemoveFile.setBounds(112, 38, 113, 23);
 		panel_fileserver.add(btnRemoveFile);
+		
+		txtpnThisIsYour = new JTextPane();
+		txtpnThisIsYour.setText("This is your personal file folder");
+		txtpnThisIsYour.setFont(new Font("Sitka Subheading", Font.PLAIN, 11));
+		txtpnThisIsYour.setEditable(false);
+		txtpnThisIsYour.setBackground(new Color(250, 250, 210));
+		txtpnThisIsYour.setBounds(12, 38, 90, 52);
+		panel_fileserver.add(txtpnThisIsYour);
 	}
 }

@@ -25,9 +25,12 @@ public class GUIController {
 		return details;
 	}
 	
-	public String getChatroomDetails() {
-		String chatroomDetails = gui.textField_chatroomWriter.getText();
+	public String[] getChatroomDetails() {
+		String[] chatroomDetails = new String[2];
+		chatroomDetails[0] = gui.textField_chatroomWriter.getText();
+		chatroomDetails[1] = gui.textField_chatroomPassword.getText();
 		gui.textField_chatroomWriter.setText("");
+		gui.textField_chatroomPassword.setText("");
 		return chatroomDetails;
 	}
 	

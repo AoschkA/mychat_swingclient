@@ -27,8 +27,9 @@ public class EventController {
 	}
 
 	public void writeMessage() {
-		if (!guiController.getWrittenMessage().equals("")){
-			firebaseHandler.createMessage(guiController.getWrittenMessage());
+		String message = guiController.getWrittenMessage();
+		if (!message.equals("")){
+			firebaseHandler.createMessage(message);
 		}
 	}
 
@@ -66,9 +67,9 @@ public class EventController {
 	}
 
 	public void addChatroom() {
-		String chatroomName = guiController.getChatroomDetails();
-		if (!chatroomName.equals(""))
-			firebaseHandler.createChatroom(chatroomName);
+		String[] chatroomDetails = guiController.getChatroomDetails();
+		if (!chatroomDetails.equals(""))
+			firebaseHandler.createChatroom(chatroomDetails);
 	}
 
 	public void joinChatroom() {

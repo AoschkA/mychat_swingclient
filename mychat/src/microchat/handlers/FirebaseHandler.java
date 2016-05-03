@@ -43,11 +43,14 @@ public void addFriend(String username) {
 	firebaseReference.updateChildren(firebaseMap);
 }
 
-public void createChatroom(String chatroomName) {
+public void createChatroom(String[] chatroomDetails) {
 	Firebase firebaseReference = new Firebase("https://micro-chat.firebaseio.com/users/"+
 			UserPreferences.USERNAME+"/chatrooms/");
 	Map<String, Object> firebaseMap = new HashMap<String, Object>();
-	firebaseMap.put(chatroomName, 0);
+	if (chatroomDetails[1].equals(""))
+		firebaseMap.put(chatroomDetails[0], 0);
+	else
+		firebaseMap.put(chatroomDetails[0], chatroomDetails[1]);
 	firebaseReference.updateChildren(firebaseMap);
 }
 
