@@ -10,10 +10,14 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import java.awt.Font;
-
+/**
+ * 
+ * @author Jonas Praem
+ * Change password GUI dialog
+ */
 public class MicrochatPopChangePasswordGUI extends JDialog {
 	private static final long serialVersionUID = -8368711295267645746L;
-	
+
 	private final JPanel contentPanel = new JPanel();
 	public JTextField textField_username;
 	public JTextField textField_oldPassword;
@@ -62,22 +66,22 @@ public class MicrochatPopChangePasswordGUI extends JDialog {
 			contentPanel.add(cancelButton);
 			cancelButton.setActionCommand("Cancel");
 		}
-		
+
 		textField_username = new JTextField();
 		textField_username.setBounds(56, 88, 107, 20);
 		contentPanel.add(textField_username);
 		textField_username.setColumns(10);
-		
+
 		textField_oldPassword = new JTextField();
 		textField_oldPassword.setColumns(10);
 		textField_oldPassword.setBounds(173, 88, 107, 20);
 		contentPanel.add(textField_oldPassword);
-		
+
 		textField_newPassword = new JTextField();
 		textField_newPassword.setColumns(10);
 		textField_newPassword.setBounds(290, 88, 107, 20);
 		contentPanel.add(textField_newPassword);
-		
+
 		txtpnUsername = new JTextPane();
 		txtpnUsername.setBackground(new Color(250, 250, 210));
 		txtpnUsername.setFont(new Font("Sitka Text", Font.ITALIC, 9));
@@ -85,7 +89,7 @@ public class MicrochatPopChangePasswordGUI extends JDialog {
 		txtpnUsername.setEditable(false);
 		txtpnUsername.setBounds(56, 57, 107, 20);
 		contentPanel.add(txtpnUsername);
-		
+
 		txtpnOldPassword = new JTextPane();
 		txtpnOldPassword.setText("OLD PASSWORD");
 		txtpnOldPassword.setFont(new Font("Sitka Text", Font.ITALIC, 9));
@@ -93,7 +97,7 @@ public class MicrochatPopChangePasswordGUI extends JDialog {
 		txtpnOldPassword.setBackground(new Color(250, 250, 210));
 		txtpnOldPassword.setBounds(173, 57, 107, 20);
 		contentPanel.add(txtpnOldPassword);
-		
+
 		txtpnNewPassword = new JTextPane();
 		txtpnNewPassword.setText("NEW PASSWORD");
 		txtpnNewPassword.setFont(new Font("Sitka Text", Font.ITALIC, 9));
@@ -101,7 +105,7 @@ public class MicrochatPopChangePasswordGUI extends JDialog {
 		txtpnNewPassword.setBackground(new Color(250, 250, 210));
 		txtpnNewPassword.setBounds(290, 57, 107, 20);
 		contentPanel.add(txtpnNewPassword);
-		
+
 		txtpnToChangeYour = new JTextPane();
 		txtpnToChangeYour.setFont(new Font("Sitka Heading", Font.ITALIC, 11));
 		txtpnToChangeYour.setBackground(new Color(250, 250, 210));

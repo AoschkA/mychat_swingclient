@@ -11,10 +11,14 @@ import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import java.awt.Font;
-
+/**
+ * 
+ * @author Jonas Praem
+ * The forgot password GUI dialog
+ */
 public class MicrochatPopForgotPasswordGUI extends JDialog {
 	private static final long serialVersionUID = 7985208805975050904L;
-	
+
 	private final JPanel contentPanel = new JPanel();
 	public JTextField textField_username;
 	public JButton okButton;

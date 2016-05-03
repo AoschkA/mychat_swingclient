@@ -3,7 +3,11 @@ package microchat.test;
 import microchat.entity.UserPreferences;
 import microchat.handlers.FirebaseHandler;
 import microchat.handlers.RelayserverHandler;
-
+/**
+ * 
+ * @author Jonas Praem
+ * Old test, doesnt work anymore
+ */
 public class DistributedConnectionTest {
 	
 	@SuppressWarnings("static-access")

@@ -1,7 +1,11 @@
 package microchat.entity;
 
 import java.util.ArrayList;
-
+/**
+ * 
+ * @author Jonas Praem
+ * Stores the user preferences
+ */
 public class UserPreferences {
 	public static ArrayList<String> CHATROOMS = new ArrayList<String>();
 	public static ArrayList<String> FRIENDS = new ArrayList<String>();
