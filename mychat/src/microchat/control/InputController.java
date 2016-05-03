@@ -156,6 +156,16 @@ public class InputController {
 			}
 			
 		});
+		
+		gui.btnUpload.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				eventManager.uploadFile();
+				
+			}
+			
+		});
 
 	}
 
