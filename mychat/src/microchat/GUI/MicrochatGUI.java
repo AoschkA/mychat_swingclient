@@ -64,6 +64,7 @@ public class MicrochatGUI extends JFrame {
 	public JTextField textField_chatroomPassword;
 	private JTextPane txtpnThisIsYour;
 	private JTextPane txtpnAddFriendsFrom;
+	private JTextPane txtpnchat;
 
 	/**
 	 * Test the GUI layout
@@ -141,6 +142,14 @@ public class MicrochatGUI extends JFrame {
 		txtpnAddFriendsFrom.setBackground(new Color(143, 188, 143));
 		txtpnAddFriendsFrom.setBounds(368, 376, 118, 34);
 		panel_chat.add(txtpnAddFriendsFrom);
+		
+		txtpnchat = new JTextPane();
+		txtpnchat.setBackground(new Color(143, 188, 143));
+		txtpnchat.setFont(new Font("Placard MT Condensed", Font.BOLD, 40));
+		txtpnchat.setText("\u00B5-Chat");
+		txtpnchat.setEditable(false);
+		txtpnchat.setBounds(10, 0, 241, 61);
+		panel_chat.add(txtpnchat);
 		
 		panel_login = new JPanel();
 		panel_login.setBackground(new Color(250, 250, 210));

@@ -36,9 +36,9 @@ public class DialogHandler {
 		Style style = textPane.addStyle("Style1", null);
 		for (String[] message : MESSAGES) {
 			if (message[0].equals(UserPreferences.USERNAME))
-				StyleConstants.setForeground(style, Color.green);
+				StyleConstants.setForeground(style, new Color(0, 102, 0));
 			else
-				StyleConstants.setForeground(style, Color.blue);
+				StyleConstants.setForeground(style, new Color(0, 128, 255));
 
 			try { doc.insertString(doc.getLength(), message[0]+ ": \t",style); }
 			catch (BadLocationException e){}
