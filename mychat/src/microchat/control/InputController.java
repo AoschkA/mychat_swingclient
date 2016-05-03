@@ -166,6 +166,16 @@ public class InputController {
 			}
 			
 		});
+		
+		gui.btnDownload.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				eventManager.downloadFile();
+				
+			}
+			
+		});
 
 	}
 

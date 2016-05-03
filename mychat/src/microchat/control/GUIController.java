@@ -120,5 +120,9 @@ public class GUIController {
 		gui.textField_pathToFileWriter.setText("");
 		return filepath;
 	}
+	
+	public String getSelectedFile() {
+		return gui.list_files.getSelectedValue();
+	}
 
 }

@@ -13,10 +13,12 @@ import microchat.handlers.FirebaseHandler;
 import microchat.handlers.RelayserverHandler;
 
 public class EventController {
+	@SuppressWarnings("unused")
+	private static FileExploreGUI exploreGUI;
+	
 	private FirebaseHandler firebaseHandler;
 	private GUIController guiController;
 	private FileserverHandler fileserverHandler;
-	private FileExploreGUI exploreGUI;
 
 	public EventController(MicrochatGUI gui) {
 		guiController = new GUIController(gui);
@@ -120,6 +122,20 @@ public class EventController {
 			}
 		}
 
+	}
+	
+	public void downloadFile() {
+		String selectedFile = guiController.getSelectedFile();
+		try {
+			fileserverHandler.downloadFile(
+					"s974489", 
+					selectedFile, 
+					System.getProperty("user.dir"), 
+					UserPreferences.USERNAME, 
+					UserPreferences.PASSWORD);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 
