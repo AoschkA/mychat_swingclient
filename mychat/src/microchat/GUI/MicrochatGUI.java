@@ -60,6 +60,7 @@ public class MicrochatGUI extends JFrame {
 	public JButton btnUpdateFilelist;
 	private JScrollPane scrollPane_friends;
 	private JScrollPane scrollPane_filelist;
+	private JButton btnRemoveFile;
 
 	/**
 	 * Test the GUI layout
@@ -254,7 +255,7 @@ public class MicrochatGUI extends JFrame {
 		panel_fileserver.setLayout(null);
 		
 		scrollPane_filelist = new JScrollPane();
-		scrollPane_filelist.setBounds(10, 96, 200, 387);
+		scrollPane_filelist.setBounds(10, 113, 200, 370);
 		panel_fileserver.add(scrollPane_filelist);
 		
 		list_files = new JList<String>();
@@ -285,15 +286,19 @@ public class MicrochatGUI extends JFrame {
 		txtpnFileList.setFont(new Font("Sitka Heading", Font.BOLD, 11));
 		txtpnFileList.setText("File list");
 		txtpnFileList.setBackground(new Color(250, 250, 210));
-		txtpnFileList.setBounds(10, 62, 92, 20);
+		txtpnFileList.setBounds(10, 89, 92, 20);
 		panel_fileserver.add(txtpnFileList);
 		
 		btnDownload = new JButton("DOWNLOAD");
-		btnDownload.setBounds(131, 26, 94, 23);
+		btnDownload.setBounds(112, 11, 113, 23);
 		panel_fileserver.add(btnDownload);
 		
 		btnUpdateFilelist = new JButton("UPDATE");
-		btnUpdateFilelist.setBounds(131, 62, 94, 23);
+		btnUpdateFilelist.setBounds(112, 86, 113, 23);
 		panel_fileserver.add(btnUpdateFilelist);
+		
+		btnRemoveFile = new JButton("REMOVE");
+		btnRemoveFile.setBounds(112, 38, 113, 23);
+		panel_fileserver.add(btnRemoveFile);
 	}
 }
