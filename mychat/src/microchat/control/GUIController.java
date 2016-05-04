@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
+import javax.swing.JScrollBar;
 
 import microchat.GUI.MicrochatGUI;
 import microchat.entity.UserPreferences;
@@ -145,6 +146,9 @@ public class GUIController {
 
 		// Updates chat
 		DialogHandler.generateChat(gui.textPane_chat);
+		// Autoscrolls to bottom of the chat
+		//JScrollBar vertical = gui.scrollPane_chat.getVerticalScrollBar();
+		//vertical.setValue( vertical.getMaximum() );
 	}
 
 	// Returns entered filepath

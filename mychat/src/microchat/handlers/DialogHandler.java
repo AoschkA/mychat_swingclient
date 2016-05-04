@@ -53,6 +53,8 @@ public class DialogHandler {
 			try { doc.insertString(doc.getLength(), message[1]+ "\n" ,style); }
 			catch (BadLocationException e){};
 		}
+		// Autoscrolls to bottom of the chat
+		textPane.setCaretPosition(textPane.getDocument().getLength());
 	}
 
 	// Clears chat
