@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JOptionPane;
-import javax.swing.JScrollBar;
 
 import microchat.GUI.MicrochatGUI;
 import microchat.entity.UserPreferences;
@@ -90,11 +89,14 @@ public class GUIController {
 	}
 
 	// Updates chatroom list 
-	public void eventListChatrooms(ArrayList<String> listData) {
+	public void eventListChatrooms() {
+		ArrayList<String> chatroomNames = new ArrayList<String>();
+		for (String[] chatroom : UserPreferences.CHATROOMS) chatroomNames.add(chatroom[0]);
+		
 		// Converts ArrayList<String> to String[]
-		chatroomListData = listData;
-		String[] arrayData = new String[listData.size()];
-		for (int i=0; i<listData.size(); i++) arrayData[i]=listData.get(i); 
+		chatroomListData = chatroomNames;
+		String[] arrayData = new String[chatroomNames.size()];
+		for (int i=0; i<chatroomNames.size(); i++) arrayData[i]=chatroomNames.get(i); 
 		// Updates GUI
 		gui.listChatrooms.setListData(arrayData);
 	}

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Stores the user preferences
  */
 public class UserPreferences {
-	public static ArrayList<String> CHATROOMS = new ArrayList<String>();
+	public static ArrayList<String[]> CHATROOMS = new ArrayList<String[]>();
 	public static ArrayList<String> FRIENDS = new ArrayList<String>();
 	public static String AUTH_TOKEN = "-1";
 	public static String USERNAME = "-1";

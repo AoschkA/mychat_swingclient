@@ -158,9 +158,15 @@ public class FirebaseHandler {
 
 			@Override
 			public void onChildAdded(DataSnapshot dataSnapshot, String arg1) {
-				if (!UserPreferences.CHATROOMS.contains(dataSnapshot.getKey()))
-					UserPreferences.CHATROOMS.add(dataSnapshot.getKey());
-				guiController.eventListChatrooms(UserPreferences.CHATROOMS);
+				String chatroomName = dataSnapshot.getKey();
+				// if not already registered, add chatroom and password to preferences
+				if (!UserPreferences.CHATROOMS.contains(chatroomName)){
+					String password = dataSnapshot.getValue().toString();
+					String[] result = {chatroomName, password};
+					UserPreferences.CHATROOMS.add(result);
+				}
+				// Adds names to GUI
+				guiController.eventListChatrooms();
 			}
 
 			@Override

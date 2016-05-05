@@ -64,7 +64,7 @@ public class EventController {
 			// Initially updates the users filelist, otherwise empty before the user presses 'Update'
 			updateFilelist();
 			// Shows the users chatrooms and friends on the GUI
-			guiController.eventListChatrooms(UserPreferences.CHATROOMS);
+			guiController.eventListChatrooms();
 		}
 		// returns if successfully logged in 
 		return validated;
