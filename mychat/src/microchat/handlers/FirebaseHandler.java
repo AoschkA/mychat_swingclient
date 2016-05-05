@@ -97,7 +97,7 @@ public class FirebaseHandler {
 		firebaseMap.put("message", message);
 		Firebase postref = firebaseReference.push();
 		postref.setValue(firebaseMap);
-		System.out.println("Message "+message+" send");
+		System.out.println("Message "+message+" sent");
 	}
 
 	// Gets the users friendlist

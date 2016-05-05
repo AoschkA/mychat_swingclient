@@ -21,7 +21,9 @@ public class DialogHandler {
 
 	// Formats the message and adds it to the messagelist
 	public static void createMessage(String message) {
-		if (message.startsWith("{name=") && message.endsWith("}")){
+		if (message.startsWith("{name=") 
+				&& message.endsWith("}") 
+				&& message.contains("message=")){
 			String[] valueSplit = message.split(", ");
 			String[] nameValue = valueSplit[0].split("=");
 			String[] messageValue = valueSplit[1].split("=");
