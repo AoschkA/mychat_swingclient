@@ -44,6 +44,8 @@ public class DialogHandler {
 		for (String[] message : MESSAGES) {
 			if (message[0].equals(UserPreferences.USERNAME))
 				StyleConstants.setForeground(style, new Color(0, 102, 0));
+			else if (UserPreferences.FRIENDS.contains(message[0]))
+				StyleConstants.setForeground(style, new Color(153, 0, 0));
 			else
 				StyleConstants.setForeground(style, new Color(0, 128, 255));
 
@@ -51,8 +53,10 @@ public class DialogHandler {
 			catch (BadLocationException e){}
 
 			StyleConstants.setForeground(style, Color.black);
-
-			try { doc.insertString(doc.getLength(), message[1]+ "\n" ,style); }
+			// message breaker
+			String finalMessage = message[1].replaceAll("(.{30})", "$1\n");
+			
+			try { doc.insertString(doc.getLength(), finalMessage+ "\n" ,style); }
 			catch (BadLocationException e){};
 		}
 		// Autoscrolls to bottom of the chat

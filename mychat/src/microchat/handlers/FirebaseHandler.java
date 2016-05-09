@@ -1,5 +1,6 @@
 package microchat.handlers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +37,7 @@ public class FirebaseHandler {
 			public void onAuthenticated(AuthData authData) {
 				System.out.println("Login Succeeded!");
 				initiateChatrooms();
+				initiateFriendList();
 			}
 		});
 	}
@@ -140,6 +142,7 @@ public class FirebaseHandler {
 			}
 
 		});
+		guiController.eventListFriends(UserPreferences.FRIENDS);
 		System.out.println("Synchronized with friendlist");
 	}
 
@@ -158,9 +161,14 @@ public class FirebaseHandler {
 
 			@Override
 			public void onChildAdded(DataSnapshot dataSnapshot, String arg1) {
+				// Creates a list of stored chatrooms
+				ArrayList<String> chatroomNameList = new ArrayList<String>();
+				for (String[] chatroomDetails : UserPreferences.CHATROOMS) 
+					chatroomNameList.add(chatroomDetails[0]);
+				// get chatroom name
 				String chatroomName = dataSnapshot.getKey();
 				// if not already registered, add chatroom and password to preferences
-				if (!UserPreferences.CHATROOMS.contains(chatroomName)){
+				if (!chatroomNameList.contains(chatroomName)){
 					String password = dataSnapshot.getValue().toString();
 					String[] result = {chatroomName, password};
 					UserPreferences.CHATROOMS.add(result);
@@ -188,6 +196,7 @@ public class FirebaseHandler {
 			}
 
 		});
+		guiController.eventListChatrooms();
 		System.out.println("Synchronized with chatroomlist");
 	}
 

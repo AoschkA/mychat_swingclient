@@ -94,7 +94,7 @@ public class MicrochatGUI extends JFrame {
 	 */
 	public MicrochatGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1082, 781);
+		setBounds(100, 100, 1134, 774);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(143, 188, 143));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -103,7 +103,7 @@ public class MicrochatGUI extends JFrame {
 
 		panel_chat = new JPanel();
 		panel_chat.setBackground(new Color(143, 188, 143));
-		panel_chat.setBounds(10, 10, 524, 725);
+		panel_chat.setBounds(10, 10, 588, 725);
 		contentPane.add(panel_chat);
 		panel_chat.setLayout(null);
 
@@ -113,17 +113,17 @@ public class MicrochatGUI extends JFrame {
 		panel_chat.add(btnSend);
 
 		textField_writingblock = new JTextField();
-		textField_writingblock.setBounds(37, 657, 362, 20);
+		textField_writingblock.setBounds(37, 657, 362, 34);
 		panel_chat.add(textField_writingblock);
 		textField_writingblock.setColumns(10);
 
 		list_chatuserlist = new JList<String>();
-		list_chatuserlist.setBounds(368, 58, 118, 307);
+		list_chatuserlist.setBounds(458, 57, 118, 307);
 		panel_chat.add(list_chatuserlist);
 
-		btnAddSelected = new JButton("Add selected");
+		btnAddSelected = new JButton("Add friend");
 		btnAddSelected.setToolTipText("add selected user to friendlist");
-		btnAddSelected.setBounds(366, 421, 120, 23);
+		btnAddSelected.setBounds(458, 411, 118, 23);
 		panel_chat.add(btnAddSelected);
 
 		txtpnInThisChat = new JTextPane();
@@ -131,11 +131,11 @@ public class MicrochatGUI extends JFrame {
 		txtpnInThisChat.setBackground(new Color(143, 188, 143));
 		txtpnInThisChat.setEditable(false);
 		txtpnInThisChat.setText("In this chat:");
-		txtpnInThisChat.setBounds(368, 27, 120, 20);
+		txtpnInThisChat.setBounds(456, 25, 120, 20);
 		panel_chat.add(txtpnInThisChat);
 
 		scrollPane_chat = new JScrollPane();
-		scrollPane_chat.setBounds(37, 58, 308, 588);
+		scrollPane_chat.setBounds(37, 58, 362, 588);
 		panel_chat.add(scrollPane_chat);
 
 		textPane_chat = new JTextPane();
@@ -147,7 +147,7 @@ public class MicrochatGUI extends JFrame {
 		txtpnAddFriendsFrom.setFont(new Font("Sitka Subheading", Font.PLAIN, 11));
 		txtpnAddFriendsFrom.setEditable(false);
 		txtpnAddFriendsFrom.setBackground(new Color(143, 188, 143));
-		txtpnAddFriendsFrom.setBounds(368, 376, 118, 34);
+		txtpnAddFriendsFrom.setBounds(458, 363, 118, 34);
 		panel_chat.add(txtpnAddFriendsFrom);
 
 		txtpnchat = new JTextPane();
@@ -160,7 +160,7 @@ public class MicrochatGUI extends JFrame {
 
 		panel_login = new JPanel();
 		panel_login.setBackground(new Color(250, 250, 210));
-		panel_login.setBounds(544, 10, 512, 164);
+		panel_login.setBounds(610, 10, 512, 164);
 		contentPane.add(panel_login);
 		panel_login.setLayout(null);
 
@@ -204,7 +204,7 @@ public class MicrochatGUI extends JFrame {
 
 		panel_chatrooms = new JPanel();
 		panel_chatrooms.setBackground(new Color(250, 250, 210));
-		panel_chatrooms.setBounds(544, 179, 267, 327);
+		panel_chatrooms.setBounds(610, 180, 267, 327);
 		contentPane.add(panel_chatrooms);
 		panel_chatrooms.setLayout(null);
 
@@ -218,7 +218,7 @@ public class MicrochatGUI extends JFrame {
 
 		btnCreateChatroom = new JButton("Join");
 		btnCreateChatroom.setToolTipText("join chatroom, provide password if required");
-		btnCreateChatroom.setBounds(162, 263, 90, 22);
+		btnCreateChatroom.setBounds(165, 262, 90, 22);
 		panel_chatrooms.add(btnCreateChatroom);
 
 		textField_chatroomWriter = new JTextField();
@@ -253,7 +253,7 @@ public class MicrochatGUI extends JFrame {
 		txtpnChatroomId.setFont(new Font("Sitka Subheading", Font.PLAIN, 11));
 		txtpnChatroomId.setText("Chatroom id:");
 		txtpnChatroomId.setEditable(false);
-		txtpnChatroomId.setBounds(10, 245, 90, 20);
+		txtpnChatroomId.setBounds(10, 242, 90, 20);
 		panel_chatrooms.add(txtpnChatroomId);
 
 		txtpnProvidePasswordIf = new JTextPane();
@@ -261,12 +261,12 @@ public class MicrochatGUI extends JFrame {
 		txtpnProvidePasswordIf.setFont(new Font("Sitka Subheading", Font.PLAIN, 10));
 		txtpnProvidePasswordIf.setEditable(false);
 		txtpnProvidePasswordIf.setBackground(new Color(250, 250, 210));
-		txtpnProvidePasswordIf.setBounds(162, 288, 90, 52);
+		txtpnProvidePasswordIf.setBounds(162, 288, 105, 52);
 		panel_chatrooms.add(txtpnProvidePasswordIf);
 
 		panel_Friends = new JPanel();
 		panel_Friends.setBackground(new Color(250, 250, 210));
-		panel_Friends.setBounds(544, 511, 267, 224);
+		panel_Friends.setBounds(610, 511, 267, 224);
 		contentPane.add(panel_Friends);
 		panel_Friends.setLayout(null);
 
@@ -302,7 +302,7 @@ public class MicrochatGUI extends JFrame {
 
 		panel_fileserver = new JPanel();
 		panel_fileserver.setBackground(new Color(250, 250, 210));
-		panel_fileserver.setBounds(821, 180, 235, 555);
+		panel_fileserver.setBounds(887, 180, 235, 555);
 		contentPane.add(panel_fileserver);
 		panel_fileserver.setLayout(null);
 

@@ -59,12 +59,8 @@ public class EventController {
 		if (validated) {
 			// Connects to firebase, and gets the chatrooms and friends for the user logged in
 			firebaseHandler.authenticateToFirebase();
-			firebaseHandler.initiateChatrooms();
-			firebaseHandler.initiateFriendList();
 			// Initially updates the users filelist, otherwise empty before the user presses 'Update'
 			updateFilelist();
-			// Shows the users chatrooms and friends on the GUI
-			guiController.eventListChatrooms();
 		}
 		// returns if successfully logged in 
 		return validated;
