@@ -1,5 +1,6 @@
 package microchat.handlers;
 
+import java.awt.EventQueue;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
+import microchat.GUI.MicrochatGUI;
 import microchat.control.GUIController;
 import microchat.entity.UserPreferences;
 /**
@@ -36,8 +38,26 @@ public class FirebaseHandler {
 			@Override
 			public void onAuthenticated(AuthData authData) {
 				System.out.println("Login Succeeded!");
-				initiateChatrooms();
-				initiateFriendList();
+				// initiate chatrooms
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							initiateChatrooms();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+				// initiate friend list
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							initiateFriendList();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
 			}
 		});
 	}

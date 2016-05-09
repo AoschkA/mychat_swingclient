@@ -49,7 +49,7 @@ public class DialogHandler {
 			else
 				StyleConstants.setForeground(style, new Color(0, 128, 255));
 
-			try { doc.insertString(doc.getLength(), message[0]+ ": \t",style); }
+			try { doc.insertString(doc.getLength(), message[0]+ ": ",style); }
 			catch (BadLocationException e){}
 
 			StyleConstants.setForeground(style, Color.black);
