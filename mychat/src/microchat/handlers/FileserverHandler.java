@@ -31,7 +31,7 @@ import javax.json.JsonValue;
  */
 public class FileserverHandler {
 	//private static final String REST_SERVICE = "http://localhost:8081/microChatFileServer/rest/files/";
-	private static final String REST_SERVICE = "http://130.226.195.227:8080/microChatFileServer/rest/files/";
+	private static final String REST_SERVICE = "http://microchatfileserver.wdk.dk:8080/microChatFileServer/rest/files/";
 	private static final String USER_AGENT = "microChatFileServerClient";
 
 
@@ -99,6 +99,7 @@ public class FileserverHandler {
 	 */
 	public List<String> listFiles(String owner, String username, String password) throws IOException {
 		URL url = new URL(REST_SERVICE + owner + "?username=" + username +"&password=" + password);
+		System.out.println(url.toString());
 		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
 		httpConn = buildHttpRequest(httpConn, "GET", false);
 		return parseHttpResponse(httpConn);

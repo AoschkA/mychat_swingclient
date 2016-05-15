@@ -11,7 +11,6 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
-import microchat.GUI.MicrochatGUI;
 import microchat.control.GUIController;
 import microchat.entity.UserPreferences;
 /**
