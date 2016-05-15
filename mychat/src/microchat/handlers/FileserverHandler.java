@@ -99,7 +99,6 @@ public class FileserverHandler {
 	 */
 	public List<String> listFiles(String owner, String username, String password) throws IOException {
 		URL url = new URL(REST_SERVICE + owner + "?username=" + username +"&password=" + password);
-		System.out.println(url.toString());
 		HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
 		httpConn = buildHttpRequest(httpConn, "GET", false);
 		return parseHttpResponse(httpConn);
